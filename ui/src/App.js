@@ -77,7 +77,7 @@ function App() {
     margin-top: -20px;
     margin-left: 640px;
     @media screen and (max-width: 600px) {
-      margin-left: 250px;
+      margin-left: -250px;
     }
   `;
 
