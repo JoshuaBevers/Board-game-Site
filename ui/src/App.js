@@ -47,7 +47,6 @@ const InputTitle = styled.p`
 function App() {
   const [UInput, setUInput] = useState('');
   const [GameResults, setGameResults] = useState('');
-
   const GenerateGameList = () => {
     setGameResults(<h1>Hello</h1>);
   };
@@ -75,7 +74,7 @@ function App() {
           onKeyPress={handleSubmit}
           // onInput={(e) => setUInput(e.target.value)}
         />
-        <UnderBar>complete achievements</UnderBar>
+        {GameResults === '' ? <UnderBar>Complete Achievements</UnderBar> : null}
       </CenterArea>
       <SearchResults>{GameResults}</SearchResults>
     </AppFrame>
