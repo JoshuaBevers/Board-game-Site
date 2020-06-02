@@ -22,6 +22,10 @@ const SearchBar = styled.input`
   margin-top: -25px;
   height: 1.4em;
   border-color: red;
+
+  @media screen and (max-width: 600px) {
+    width: 310px;
+  }
 `;
 
 const CenterArea = styled.div`
@@ -32,12 +36,20 @@ const CenterArea = styled.div`
   margin-top: 30vh;
   flex-direction: column;
   font-size: 3.4em;
+
+  @media screen and (max-width: 600px) {
+    font-size: 2em;
+    margin-top: 0px;
+  }
 `;
 
 const UnderBar = styled.p`
   font-size: 23px;
   margin-top: 10px;
   -webkit-text-stroke: 0.4px blue;
+  @media screen and (max-width: 600px) {
+    font-size: 13px;
+  }
 `;
 
 const InputTitle = styled.p`
@@ -66,7 +78,9 @@ function App() {
       <CenterArea>
         <InputTitle>Find Boardgames</InputTitle>
         <SearchBar
-          type='text'
+          type='search'
+          results='5'
+          name='s'
           value={UInput}
           onChange={(e) => {
             setUInput(e.target.value);
