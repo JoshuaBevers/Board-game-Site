@@ -11,11 +11,17 @@ const Button = styled.button`
   color: orange;
   background-color: transparent;
   border-color: transparent;
+  justify-content: center;
 `;
 
 const SearchBar = styled.input`
   color: purple;
-  width: 400px;
+  width: 700px;
+  text-align: center;
+  border-radius: 15px;
+  margin-top: -25px;
+  height: 1.4em;
+  border-color: red;
 `;
 
 const CenterArea = styled.div`
@@ -25,17 +31,25 @@ const CenterArea = styled.div`
   align-items: center;
   margin-top: 30vh;
   flex-direction: column;
-  font-size: 1.5em;
+  font-size: 3.4em;
+`;
+
+const UnderBar = styled.p`
+  font-size: 23px;
+  margin-top: 10px;
+  -webkit-text-stroke: 0.4px blue;
+`;
+
+const InputTitle = styled.p`
+  -webkit-text-stroke: 0.7px red;
 `;
 
 function App() {
-  let results = [];
   const [UInput, setUInput] = useState('');
   const [GameResults, setGameResults] = useState('');
 
   const GenerateGameList = () => {
     setGameResults(<h1>Hello</h1>);
-    // return <h1>Generated</h1>;
   };
 
   const handleSubmit = (e) => {
@@ -45,16 +59,13 @@ function App() {
     }
   };
 
-  const SearchResults = styled.div`
-    color: green;
-  `;
+  const SearchResults = styled.div``;
 
   return (
     <AppFrame>
-      <Button> login</Button>
-      <Button> logout</Button>
+      Achieveland
       <CenterArea>
-        <p>Find Boardgames</p>
+        <InputTitle>Find Boardgames</InputTitle>
         <SearchBar
           type='text'
           value={UInput}
@@ -64,9 +75,9 @@ function App() {
           onKeyPress={handleSubmit}
           // onInput={(e) => setUInput(e.target.value)}
         />
+        <UnderBar>complete achievements</UnderBar>
       </CenterArea>
-
-      {GameResults}
+      <SearchResults>{GameResults}</SearchResults>
     </AppFrame>
   );
 }
