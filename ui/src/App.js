@@ -70,6 +70,17 @@ function App() {
     }
   };
 
+  const SearchButton = styled.button`
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: transparent;
+    margin-top: -20px;
+    margin-left: 640px;
+    @media screen and (max-width: 600px) {
+      margin-left: 250px;
+    }
+  `;
+
   const SearchResults = styled.div``;
 
   return (
@@ -88,6 +99,7 @@ function App() {
           onKeyPress={handleSubmit}
           // onInput={(e) => setUInput(e.target.value)}
         />
+        <SearchButton>Search</SearchButton>
         {GameResults === '' ? <UnderBar>Complete Achievements</UnderBar> : null}
       </CenterArea>
       <SearchResults>{GameResults}</SearchResults>
