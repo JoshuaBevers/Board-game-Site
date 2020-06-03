@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import * as QueryResults from './data/Agricola.json';
+import * as Spiderman from './data/Spiderman.json';
+
 const AppFrame = styled.div`
   font-family: Major Mono Display;
   min-height: 100vh;
   background-color: grey;
-`;
-
-const Button = styled.button`
-  color: orange;
-  background-color: transparent;
-  border-color: transparent;
-  justify-content: center;
 `;
 
 const SearchBar = styled.input`
@@ -56,32 +52,50 @@ const InputTitle = styled.p`
   -webkit-text-stroke: 0.7px red;
 `;
 
+const SearchButton = styled.button`
+  background-color: transparent;
+  border-color: transparent;
+  margin: 0;
+  padding: 0;
+  margin-top: -20px;
+  margin-left: -640px;
+  @media screen and (max-width: 600px) {
+    margin-left: -250px;
+  }
+`;
+
+const ResultList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 0px;
+  margin-bottom: -100px;
+`;
+
+const SearchResult = styled.div`
+  margin-top: -10px;
+`;
+
 function App() {
   const [UInput, setUInput] = useState('');
   const [GameResults, setGameResults] = useState('');
+
   const GenerateGameList = () => {
-    setGameResults(<h1>Hello</h1>);
+    let DatabaseResults = [];
+    DatabaseResults.push(QueryResults);
+    DatabaseResults.push(Spiderman);
+
+    console.log(DatabaseResults);
+    setGameResults(DatabaseResults);
   };
 
   const handleSubmit = (e) => {
+    console.log('Firing');
     if (e.key === 'Enter') {
       console.log('Enter was pressed');
       GenerateGameList();
     }
   };
-
-  const SearchButton = styled.button`
-    background-color: transparent;
-    border-color: transparent;
-    border-radius: transparent;
-    margin-top: -20px;
-    margin-left: 640px;
-    @media screen and (max-width: 600px) {
-      margin-left: -250px;
-    }
-  `;
-
-  const SearchResults = styled.div``;
 
   return (
     <AppFrame>
@@ -97,12 +111,27 @@ function App() {
             setUInput(e.target.value);
           }}
           onKeyPress={handleSubmit}
-          // onInput={(e) => setUInput(e.target.value)}
         />
-        <SearchButton>Search</SearchButton>
+        <SearchButton onClick={handleSubmit}>Search</SearchButton>
         {GameResults === '' ? <UnderBar>Complete Achievements</UnderBar> : null}
       </CenterArea>
-      <SearchResults>{GameResults}</SearchResults>
+      <ResultList>
+        {GameResults.length !== 0
+          ? GameResults.map((result, index) => {
+              return (
+                <SearchResult key={index}>
+                  <ul>
+                    <h2>
+                      <a href=''>{result.default.GameName}</a>
+                    </h2>
+
+                    <p>{result.default.description}</p>
+                  </ul>
+                </SearchResult>
+              );
+            })
+          : null}
+      </ResultList>
     </AppFrame>
   );
 }
