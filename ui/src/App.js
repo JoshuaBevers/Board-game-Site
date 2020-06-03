@@ -85,14 +85,14 @@ function App() {
     DatabaseResults.push(QueryResults);
     DatabaseResults.push(Spiderman);
 
-    console.log(DatabaseResults);
     setGameResults(DatabaseResults);
   };
 
   const handleSubmit = (e) => {
-    console.log('Firing');
     if (e.key === 'Enter') {
       console.log('Enter was pressed');
+      GenerateGameList();
+    } else {
       GenerateGameList();
     }
   };
