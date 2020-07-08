@@ -6,11 +6,14 @@ const pgp = require('pg-promise')({
   },
 });
 
+// const options = {
+//   host: process.env.DB_HOST,
+//   database: process.env.DB_NAME,
+// };
+
 const options = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_NAME,
-  database: process.env.DB_NAME,
-  password: process.env.PASSWORD,
+  host: 'localhost',
+  database: 'boardgames',
 };
 
 const db = pgp(options);

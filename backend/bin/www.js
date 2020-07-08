@@ -7,7 +7,6 @@
 require('dotenv').config();
 
 var app = require('../app');
-var debug = require('debug')('drinkcast-api:server');
 var http = require('http');
 
 /**
@@ -84,5 +83,4 @@ function onError(error) {
 function onListening() {
   var addr = server.address();
   var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-  debug('Listening on ' + bind);
 }
