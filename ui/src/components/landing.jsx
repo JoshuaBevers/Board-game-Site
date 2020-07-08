@@ -129,7 +129,9 @@ function Landing() {
                   <ul>
                     <h2>
                       {redirect && <Redirect to='/game/' />}
-                      <a onClick={enterZone}>{result.default.GameName}</a>
+                      <button onClick={enterZone} url='#' type='submit'>
+                        {result.default.GameName}
+                      </button>
                     </h2>
                     <p>{result.default.description}</p>
                   </ul>
