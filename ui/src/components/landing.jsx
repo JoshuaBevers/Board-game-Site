@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
+import { API_URL, get } from '../api/api-conn';
 
 import * as QueryResults from '../data/Agricola.json';
 import * as Spiderman from '../data/Spiderman.json';
@@ -99,7 +100,7 @@ function Landing() {
     }
   };
 
-  const enterZone = () => {
+  const enterZone = async () => {
     setRedirect(true);
   };
 
@@ -128,7 +129,7 @@ function Landing() {
                 <SearchResult key={index}>
                   <ul>
                     <h2>
-                      {redirect && <Redirect to='/game/' />}
+                      {redirect && <Redirect to='/game' />}
                       <button onClick={enterZone} url='#' type='submit'>
                         {result.default.GameName}
                       </button>

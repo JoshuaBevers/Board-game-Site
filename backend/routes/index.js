@@ -6,10 +6,15 @@ const DataBase = require('../models/functions');
 
 /* GET home page. */
 router.get('/', async (req, res) => {
-  const response = await DataBase.getGameByName();
-  console.log(response);
-  console.log('Reponse?');
-  res.render('index', { title: 'Express' });
+  try {
+    const response = await DataBase.getGameByName();
+    console.log('hello from index.js!');
+    console.log(response);
+    res.send(response).status(200);
+  } catch (e) {
+    console.log('the api on backend failed to fetch in index.');
+    return e;
+  }
 });
 
 module.exports = router;

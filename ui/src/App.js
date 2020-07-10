@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Route path='/' component={Landing} exact />
-      <Route path='/game/' component={GameStub} />
+      <Route path='/game' component={GameStub} />
     </Router>
   );
 }

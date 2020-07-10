@@ -11,7 +11,7 @@ const app = express();
 
 const corsOptions = {
   origin: '*',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
   preflightContinue: false,
   optionsSuccessStatus: 204,
   'Access-Control-Allow-Origin': '*',
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors(corsOptions));
-console.log('Firing uses');
+
 app.use('/api', apiRouter);
 app.use('/', indexRouter);
 
