@@ -9,16 +9,21 @@ export const get = async (url) => {
       },
     });
     console.log(response);
-    return response;
+    const data = await response.json();
+    console.log('the data is: ', data);
+    return data;
   } catch (e) {
-    console.log('Fetch failed. Try again with some different code.', e);
+    console.log(
+      'Fetch failed. Try again with some different code, or a bigger sword.',
+      e,
+    );
   }
 };
 
 export const post = async (url, data) => {
   try {
     const response = await fetch(url, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -33,4 +38,4 @@ export const post = async (url, data) => {
   }
 };
 
-export const API_URL = 'localhost:5000';
+export const API_URL = 'http://localhost:5000';
