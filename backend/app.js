@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors(corsOptions));
 console.log('Firing uses');
-app.use('/', indexRouter);
 app.use('/api', apiRouter);
+app.use('/', indexRouter);
 
 module.exports = app;

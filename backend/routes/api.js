@@ -14,11 +14,13 @@ const DataBase = require('../models/functions');
 
 const router = express.Router();
 
-router.get('/game', async (req, res) => {
-  //   res.render('index', { title: 'Express' });
+router.get('/', async (req, res) => {
+  try {
+  } catch (e) {}
   const response = await DataBase.getGameByName();
   console.log('hello!');
-  res.status(200);
+  console.log(response);
+  res.send(response).status(200);
 });
 
 module.exports = router;
