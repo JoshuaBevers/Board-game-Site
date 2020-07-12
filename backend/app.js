@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const indexRouter = require('./routes/index');
 const apiRouter = require('./routes/api');
+const search = require('./routes/search');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors(corsOptions));
 
 app.use('/api', apiRouter);
+app.use('/search', search);
 app.use('/', indexRouter);
 
 module.exports = app;

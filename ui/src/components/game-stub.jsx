@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
 import { API_URL, get } from '../api/api-conn';
 
 function GameStub(props) {
+  useEffect(() => {});
+
   const enterZone = async () => {
     try {
       const geturl = API_URL + '/api';
@@ -18,7 +19,7 @@ function GameStub(props) {
   return (
     <>
       <p>hello</p>
-      <p>{props.value}</p>
+      <p>props: {props.data}</p>
       <button onClick={enterZone}> Fetch!</button>
     </>
   );

@@ -4,7 +4,6 @@ const DataBase = require('../models/functions');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  console.log('the api is about to try and fetch.');
   try {
     const response = await DataBase.getGameByName();
 
