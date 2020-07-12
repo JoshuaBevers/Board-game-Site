@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
-import { API_URL, get } from '../api/api-conn';
+import { API_URL, get, getList } from '../api/api-conn';
 
 import * as QueryResults from '../data/Agricola.json';
 import * as Spiderman from '../data/Spiderman.json';
@@ -83,8 +83,11 @@ function Landing() {
   const [GameResults, setGameResults] = useState('');
   const [redirect, setRedirect] = useState(false);
 
-  const GenerateGameList = () => {
+  const GenerateGameList = async () => {
     let DatabaseResults = [];
+    console.log(UInput);
+    const SearchResults = await getList(UInput);
+    console.log(SearchResults);
     DatabaseResults.push(QueryResults);
     DatabaseResults.push(Spiderman);
 

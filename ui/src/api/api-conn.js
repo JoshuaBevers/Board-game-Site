@@ -18,6 +18,27 @@ export const get = async (url) => {
     );
   }
 };
+export const getList = async (gameName) => {
+  const url = 'http://localhost:5000/search';
+  console.log('the requested url is: ', url);
+  try {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    console.log('the data is: ', data);
+    return data;
+  } catch (e) {
+    console.log(
+      'Fetch failed. Try again with some different code, or a bigger sword.',
+      e,
+    );
+  }
+};
 
 export const post = async (url, data) => {
   try {
