@@ -85,7 +85,7 @@ function Landing() {
 
   const GenerateGameList = async () => {
     let DatabaseResults = [];
-    console.log(UInput);
+    console.log('UI input is: ', UInput);
     const SearchResults = await getList(UInput);
     console.log(SearchResults);
     DatabaseResults.push(QueryResults);
@@ -99,7 +99,6 @@ function Landing() {
       console.log('Enter was pressed');
       GenerateGameList();
     } else {
-      GenerateGameList();
     }
   };
 

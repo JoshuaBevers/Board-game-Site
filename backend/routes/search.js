@@ -7,12 +7,14 @@ const DataBase = require('../models/functions');
 /* GET home page. */
 router.get('/', async (req, res) => {
   try {
-    const response = await DataBase.getGameList();
+    const response = await DataBase.getGameList(req.headers.game);
     console.log('hello from search.js!');
     console.log(response);
-    res.send(response).status(200);
+    console.log(req.headers);
+
+    res.json(response).status(200);
   } catch (e) {
-    console.log('the api on backend failed to fetch in index.');
+    console.log('the api on backend failed to fetch in search.js.');
     return e;
   }
 });

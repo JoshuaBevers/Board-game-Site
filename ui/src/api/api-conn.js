@@ -27,16 +27,27 @@ export const getList = async (gameName) => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        game: gameName,
       },
     });
+
     const data = await response.json();
     console.log('the data is: ', data);
+
     return data;
   } catch (e) {
     console.log(
-      'Fetch failed. Try again with some different code, or a bigger sword.',
+      'Fetch failed on GetList. Try again with some different code, or a bigger sword.',
       e,
     );
+    console.log('relevent data below');
+    const regs = {
+      method: 'GET',
+      headers: gameName,
+      mode: 'cors',
+      cache: 'default',
+    };
+    console.log(regs);
   }
 };
 
