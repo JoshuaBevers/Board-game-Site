@@ -88,9 +88,13 @@ function Landing() {
     console.log('UI input is: ', UInput);
     const SearchResults = await getList(UInput);
     console.log(SearchResults);
-    DatabaseResults.push(QueryResults);
-    DatabaseResults.push(Spiderman);
 
+    SearchResults.map((game, index) => {
+      DatabaseResults.push(game);
+      console.log('Iteration', game.name);
+    });
+    // DatabaseResults.push(SearchResults[0]);
+    console.log(DatabaseResults);
     setGameResults(DatabaseResults);
   };
 
@@ -131,12 +135,12 @@ function Landing() {
                 <SearchResult key={index}>
                   <ul>
                     <h2>
-                      {redirect && <Redirect to='/game' />}
-                      <button onClick={enterZone} url='#' type='submit'>
-                        {result.default.GameName}
-                      </button>
+                      {redirect && <Redirect to='/game/' />}
+                      <a onClick={enterZone} url='#' type='submit'>
+                        {result.name}
+                      </a>
                     </h2>
-                    <p>{result.default.description}</p>
+                    <p>{result.description}</p>
                   </ul>
                 </SearchResult>
               );

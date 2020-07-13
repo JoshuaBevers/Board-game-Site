@@ -30,10 +30,7 @@ export const getList = async (gameName) => {
         game: gameName,
       },
     });
-
     const data = await response.json();
-    console.log('the data is: ', data);
-
     return data;
   } catch (e) {
     console.log(
