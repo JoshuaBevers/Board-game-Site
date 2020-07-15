@@ -1,4 +1,4 @@
-export const get = async (url) => {
+export const getGame = async (url, gameName) => {
   console.log('the requested url is: ', url);
   try {
     const response = await fetch(url, {
@@ -6,10 +6,11 @@ export const get = async (url) => {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        game: gameName,
       },
     });
     const data = await response.json();
-    console.log('the data is: ', data);
+    console.log('the get game data is: ', data);
     return data;
   } catch (e) {
     console.log(
@@ -31,6 +32,7 @@ export const getList = async (gameName) => {
       },
     });
     const data = await response.json();
+    console.log('the getList data is: '.data);
     return data;
   } catch (e) {
     console.log(

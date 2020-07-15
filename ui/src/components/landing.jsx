@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, Route } from 'react';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { API_URL, get, getList } from '../api/api-conn';
+import GameStub from './game-stub';
+import Modal from './modal';
 
 import * as QueryResults from '../data/Agricola.json';
 import * as Spiderman from '../data/Spiderman.json';
@@ -74,7 +76,7 @@ const ResultList = styled.div`
   margin-bottom: -100px;
 `;
 
-const SearchResult = styled.div`
+const SearchResult = styled.form`
   margin-top: -10px;
 `;
 
@@ -82,38 +84,50 @@ function Landing() {
   const [UInput, setUInput] = useState('');
   const [GameResults, setGameResults] = useState('');
   const [redirect, setRedirect] = useState(false);
+  const [ModalData, setModalData] = useState('');
+  const [state, setState] = useState({
+    showModal: false,
+  });
 
   const GenerateGameList = async () => {
     let DatabaseResults = [];
     console.log('UI input is: ', UInput);
     const SearchResults = await getList(UInput);
-    console.log(SearchResults);
+    console.log('Search results returned: ', SearchResults);
 
-    SearchResults.map((game, index) => {
+    SearchResults.map((game) => {
       DatabaseResults.push(game);
       console.log('Iteration', game.name);
     });
-    // DatabaseResults.push(SearchResults[0]);
+
     console.log(DatabaseResults);
     setGameResults(DatabaseResults);
   };
 
+  const handleClose = () => {
+    setState({ gameSelected: undefined });
+  };
+
   const handleSubmit = (e) => {
     if (e.key === 'Enter') {
-      console.log('Enter was pressed');
       GenerateGameList();
-    } else {
     }
   };
 
-  const enterZone = async () => {
-    setRedirect(true);
+  const enterZone = async (game) => {
+    //possibly depricated in this utility
+    setState({ gameSelected: game });
+    // console.log(state);
+    // console.log('Recieved game Data', game);
   };
 
   return (
     <AppFrame>
       Achieveland
       <CenterArea>
+        {state.gameSelected && (
+          <Modal game={state.gameSelected} closeModal={handleClose} />
+        )}
         <InputTitle>Find Boardgames</InputTitle>
         <SearchBar
           type='search'
@@ -130,19 +144,17 @@ function Landing() {
       </CenterArea>
       <ResultList>
         {GameResults.length !== 0
-          ? GameResults.map((result, index) => {
+          ? GameResults.map((game, index) => {
               return (
-                <SearchResult key={index}>
-                  <ul>
-                    <h2>
-                      {redirect && <Redirect to='/game/' />}
-                      <a onClick={enterZone} url='#' type='submit'>
-                        {result.name}
-                      </a>
-                    </h2>
-                    <p>{result.description}</p>
-                  </ul>
-                </SearchResult>
+                <Link to={`/game/${game.name}`}>
+                  <SearchResult key={game.id}>
+                    <ul>
+                      <h2>{game.name}</h2>
+
+                      <p>{game.description}</p>
+                    </ul>
+                  </SearchResult>
+                </Link>
               );
             })
           : null}
