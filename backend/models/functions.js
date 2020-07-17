@@ -15,7 +15,6 @@ class Functions {
 
   static async getGameByName(name) {
     try {
-      name = 'agricola';
       const response = await db.one('SELECT * FROM games WHERE name = $1', [
         name,
       ]);
