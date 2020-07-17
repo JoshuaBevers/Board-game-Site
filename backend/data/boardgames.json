@@ -1,0 +1,22 @@
+{
+  "boardgames": [
+    {
+      "name": "agricola",
+      "description": "4x boardgame",
+      "achievName": ["Toppler"],
+      "achievDesc": ["Use no workers"]
+    },
+    {
+      "name": "agricola 2",
+      "description": "4x",
+      "achievName": "duo",
+      "achievDesc": "play the second game"
+    },
+    {
+      "name": "Spiderman",
+      "description": "web-slinging fun",
+      "achievName": "Toppler",
+      "achievDesc": "Use no workers"
+    }
+  ]
+}

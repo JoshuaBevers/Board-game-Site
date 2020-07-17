@@ -1,6 +1,26 @@
 const db = require('./conn.js');
+const gamebase = require('../data/boardgames.json');
 
 class Functions {
+  static async getGameListJson(game) {
+    console.log('The requested gameName is: ', game);
+    let gameList = [];
+    try {
+      const response = gamebase.boardgames.map((reference, index) => {
+        console.log(reference.name);
+
+        if (reference.name.includes(game)) {
+          gameList.push(reference);
+          console.log('the if statement returns: ', reference);
+        }
+      });
+      console.log('the end resonse is: ', gameList);
+      return response;
+    } catch (e) {
+      return e;
+    }
+  }
+
   static async getGameList(search) {
     try {
       search = search + '%';

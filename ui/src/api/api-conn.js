@@ -32,7 +32,7 @@ export const getList = async (gameName) => {
       },
     });
     const data = await response.json();
-    console.log('the getList data is: '.data);
+    console.log('the getList data is:', data);
     return data;
   } catch (e) {
     console.log(

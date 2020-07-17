@@ -83,8 +83,6 @@ const SearchResult = styled.form`
 function Landing() {
   const [UInput, setUInput] = useState('');
   const [GameResults, setGameResults] = useState('');
-  const [redirect, setRedirect] = useState(false);
-  const [ModalData, setModalData] = useState('');
   const [state, setState] = useState({
     showModal: false,
   });
@@ -115,10 +113,7 @@ function Landing() {
   };
 
   const enterZone = async (game) => {
-    //possibly depricated in this utility
     setState({ gameSelected: game });
-    // console.log(state);
-    // console.log('Recieved game Data', game);
   };
 
   return (
