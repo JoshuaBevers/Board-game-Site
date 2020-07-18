@@ -82,8 +82,6 @@ function GameStub() {
               );
             })
           : null}
-
-        <button onClick={printObject}>print obj</button>
       </AchievementList>
     </AppFrame>
   );

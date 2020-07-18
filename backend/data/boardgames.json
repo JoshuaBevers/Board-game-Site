@@ -4,8 +4,12 @@
       "id": 1,
       "name": "agricola",
       "description": "4x boardgame",
-      "achievName": ["Toppler", "doppler"],
-      "achievDesc": ["Use no workers", "The clone of the first achieve"]
+      "achievements": [
+        {
+          "name": "The destroyer",
+          "description": "beat your opponents by 20 points"
+        }
+      ]
     },
     {
       "id": 2,
@@ -20,15 +24,7 @@
           "name": "The second achievement!",
           "description": "This is exciting."
         }
-      ],
-      "achievDesc": ["play the second game", "Invert your spiritual axis"]
-    },
-    {
-      "id": 3,
-      "name": "spiderman",
-      "description": "web-slinging fun",
-      "achievName": ["Toppler", "doppler"],
-      "achievDesc": ["Use no workers", "The clone of the first game"]
+      ]
     }
   ]
 }
