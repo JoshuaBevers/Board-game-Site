@@ -16,6 +16,13 @@ const Title = styled.div`
   }
 `;
 
+const AchievementList = styled.div`
+  @media screen and (max-width: 600px) {
+    text-align: center;
+    font-size: 15px;
+  }
+`;
+
 function GameStub() {
   const [SelectedGame, setSelectedGame] = useState('');
 
@@ -40,12 +47,17 @@ function GameStub() {
     return CleanGame;
   };
 
+  const printObject = () => {
+    console.log(SelectedGame);
+  };
+
   useEffect(() => {
     async function fetchGame(gameName) {
       const game = await getGame(gameName);
       setSelectedGame(game[0]);
       return game;
     }
+
     const gameIS = decodeURL();
     fetchGame(gameIS);
   }, []);
@@ -59,6 +71,20 @@ function GameStub() {
           <p>Loading...</p>
         )}
       </Title>
+      <AchievementList>
+        {SelectedGame !== ''
+          ? SelectedGame.achievements.map((achiev) => {
+              return (
+                <div key={achiev.name}>
+                  <h2>{achiev.name}</h2>
+                  <p>{achiev.description}</p>
+                </div>
+              );
+            })
+          : null}
+
+        <button onClick={printObject}>print obj</button>
+      </AchievementList>
     </AppFrame>
   );
 }

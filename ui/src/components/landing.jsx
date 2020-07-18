@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getList } from '../api/api-conn';
 
-import Modal from './modal';
-
 const AppFrame = styled.div`
   font-family: Major Mono Display;
   min-height: 100vh;
@@ -109,9 +107,6 @@ function Landing() {
     <AppFrame>
       Achieveland
       <CenterArea>
-        {state.gameSelected && (
-          <Modal game={state.gameSelected} closeModal={handleClose} />
-        )}
         <InputTitle>Find Boardgames</InputTitle>
         <SearchBar
           type='search'

@@ -11,7 +11,16 @@
       "id": 2,
       "name": "agricola 2",
       "description": "4x",
-      "achievName": ["duo", "Runn that google again!"],
+      "achievements": [
+        {
+          "name": "Runn that google again!",
+          "description": "Links me to google"
+        },
+        {
+          "name": "The second achievement!",
+          "description": "This is exciting."
+        }
+      ],
       "achievDesc": ["play the second game", "Invert your spiritual axis"]
     },
     {
