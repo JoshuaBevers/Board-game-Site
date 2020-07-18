@@ -130,15 +130,15 @@ function Landing() {
         {GameResults.length !== 0
           ? GameResults.map((game, index) => {
               return (
-                <Link to={`/game/${game.name}`}>
-                  <SearchResult key={game.id}>
+                <SearchResult key={game.name}>
+                  <Link to={`/game/${game.name}`}>
                     <ul>
                       <h2>{game.name}</h2>
 
                       <p>{game.description}</p>
                     </ul>
-                  </SearchResult>
-                </Link>
+                  </Link>
+                </SearchResult>
               );
             })
           : null}

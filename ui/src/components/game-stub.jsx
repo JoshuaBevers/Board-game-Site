@@ -1,6 +1,20 @@
 import React, { useEffect, useState } from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import { getGame } from '../api/api-conn';
+
+const AppFrame = styled.div`
+  font-family: Major Mono Display;
+  min-height: 100vh;
+  background-color: grey;
+`;
+
+const Title = styled.div`
+  @media screen and (max-width: 600px) {
+    text-align: center;
+    font-size: 50px;
+    -webkit-text-stroke: 0.7px red;
+  }
+`;
 
 function GameStub() {
   const [SelectedGame, setSelectedGame] = useState('');
@@ -36,25 +50,16 @@ function GameStub() {
     fetchGame(gameIS);
   }, []);
 
-  const testingButton = () => {
-    console.log(SelectedGame);
-  };
-
   return (
-    <>
-      <p>hello</p>
-      <>
-        props:{' '}
+    <AppFrame>
+      <Title>
         {SelectedGame !== '' ? (
-          <>
-            <p>there is something there</p> {SelectedGame.name}
-            <button onClick={testingButton}> check the state</button>
-          </>
+          <div>{SelectedGame.name}</div>
         ) : (
           <p>Loading...</p>
         )}
-      </>
-    </>
+      </Title>
+    </AppFrame>
   );
 }
 

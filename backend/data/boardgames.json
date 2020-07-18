@@ -1,18 +1,21 @@
 {
   "boardgames": [
     {
+      "id": 1,
       "name": "agricola",
       "description": "4x boardgame",
       "achievName": ["Toppler", "doppler"],
       "achievDesc": ["Use no workers", "The clone of the first achieve"]
     },
     {
+      "id": 2,
       "name": "agricola 2",
       "description": "4x",
       "achievName": ["duo", "Runn that google again!"],
       "achievDesc": ["play the second game", "Invert your spiritual axis"]
     },
     {
+      "id": 3,
       "name": "spiderman",
       "description": "web-slinging fun",
       "achievName": ["Toppler", "doppler"],
