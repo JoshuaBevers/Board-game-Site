@@ -9,7 +9,7 @@ function GameStub() {
     let GameTitle = game;
     if (game.includes('%20')) {
       const splitGame = game.split('%20');
-      console.log(splitGame);
+
       if (splitGame.length >= 2) {
         GameTitle = splitGame.join(' ');
       }
@@ -22,7 +22,7 @@ function GameStub() {
     const urlParam = url.split('/');
     const uncleanGame = urlParam.pop();
     const CleanGame = cleanGame(uncleanGame);
-    console.log('url is: ', CleanGame);
+
     return CleanGame;
   };
 

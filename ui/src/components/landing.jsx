@@ -86,16 +86,12 @@ function Landing() {
 
   const GenerateGameList = async () => {
     let DatabaseResults = [];
-    console.log('UI input is: ', UInput);
     const SearchResults = await getList(UInput);
-    console.log('Search results returned: ', SearchResults);
 
     SearchResults.forEach((game) => {
       DatabaseResults.push(game);
-      console.log('Iteration', game.name);
     });
 
-    console.log(DatabaseResults);
     setGameResults(DatabaseResults);
   };
 
