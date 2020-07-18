@@ -3,20 +3,20 @@
     {
       "name": "agricola",
       "description": "4x boardgame",
-      "achievName": ["Toppler"],
-      "achievDesc": ["Use no workers"]
+      "achievName": ["Toppler", "doppler"],
+      "achievDesc": ["Use no workers", "The clone of the first achieve"]
     },
     {
       "name": "agricola 2",
       "description": "4x",
-      "achievName": "duo",
-      "achievDesc": "play the second game"
+      "achievName": ["duo", "Runn that google again!"],
+      "achievDesc": ["play the second game", "Invert your spiritual axis"]
     },
     {
-      "name": "Spiderman",
+      "name": "spiderman",
       "description": "web-slinging fun",
-      "achievName": "Toppler",
-      "achievDesc": "Use no workers"
+      "achievName": ["Toppler", "doppler"],
+      "achievDesc": ["Use no workers", "The clone of the first game"]
     }
   ]
 }

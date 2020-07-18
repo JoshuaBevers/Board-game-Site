@@ -1,4 +1,5 @@
-export const getGame = async (url, gameName) => {
+export const getGame = async (gameName) => {
+  const url = 'http://localhost:5000/game';
   console.log('the requested url is: ', url);
   try {
     const response = await fetch(url, {
@@ -19,8 +20,9 @@ export const getGame = async (url, gameName) => {
     );
   }
 };
+
 export const getList = async (gameName) => {
-  const url = 'http://localhost:5000/search';
+  const url = 'http://localhost:5000/test';
   console.log('the requested url is: ', url);
   try {
     const response = await fetch(url, {

@@ -1,12 +1,9 @@
-import React, { useState, Route } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { API_URL, get, getList } from '../api/api-conn';
-import GameStub from './game-stub';
-import Modal from './modal';
+import { getList } from '../api/api-conn';
 
-import * as QueryResults from '../data/Agricola.json';
-import * as Spiderman from '../data/Spiderman.json';
+import Modal from './modal';
 
 const AppFrame = styled.div`
   font-family: Major Mono Display;
@@ -93,7 +90,7 @@ function Landing() {
     const SearchResults = await getList(UInput);
     console.log('Search results returned: ', SearchResults);
 
-    SearchResults.map((game) => {
+    SearchResults.forEach((game) => {
       DatabaseResults.push(game);
       console.log('Iteration', game.name);
     });
@@ -110,10 +107,6 @@ function Landing() {
     if (e.key === 'Enter') {
       GenerateGameList();
     }
-  };
-
-  const enterZone = async (game) => {
-    setState({ gameSelected: game });
   };
 
   return (

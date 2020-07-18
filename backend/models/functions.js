@@ -15,7 +15,7 @@ class Functions {
         }
       });
       console.log('the end resonse is: ', gameList);
-      return response;
+      return gameList;
     } catch (e) {
       return e;
     }
@@ -35,10 +35,18 @@ class Functions {
 
   static async getGameByName(name) {
     try {
-      const response = await db.one('SELECT * FROM games WHERE name = $1', [
-        name,
-      ]);
-      return response;
+      let returnableGame = [];
+      const game = gamebase.boardgames.forEach((reference, index) => {
+        if (reference.name === name) {
+          returnableGame.push(reference);
+        }
+      });
+      console.log('The game from the JSON grab is: ', game);
+
+      // const response = await db.one('SELECT * FROM games WHERE name = $1', [
+      //   name,
+      // ]);
+      return returnableGame;
     } catch (err) {
       return err.message;
     }
