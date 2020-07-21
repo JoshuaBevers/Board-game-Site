@@ -25,6 +25,36 @@
           "description": "This is exciting."
         }
       ]
+    },
+    {
+      "id": 3,
+      "name": "spiderman",
+      "description": "4x",
+      "achievements": [
+        {
+          "name": "Runn that google again!",
+          "description": "Links me to google"
+        },
+        {
+          "name": "The second achievement!",
+          "description": "This is exciting."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "thanos",
+      "description": "Mavel super hero game.",
+      "achievements": [
+        {
+          "name": "Hero of our time",
+          "description": "Win while not losing any heroes to villians"
+        },
+        {
+          "name": "Not on my watch!",
+          "description": "Defeat Thanos and don't let him get any of the infinity stones"
+        }
+      ]
     }
   ]
 }
