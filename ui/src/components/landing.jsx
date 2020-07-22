@@ -1,12 +1,7 @@
-import React, { useState, Route } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { API_URL, get, getList } from '../api/api-conn';
-import GameStub from './game-stub';
-import Modal from './modal';
-
-import * as QueryResults from '../data/Agricola.json';
-import * as Spiderman from '../data/Spiderman.json';
+import { getList } from '../api/api-conn';
 
 const AppFrame = styled.div`
   font-family: Major Mono Display;
@@ -83,24 +78,18 @@ const SearchResult = styled.form`
 function Landing() {
   const [UInput, setUInput] = useState('');
   const [GameResults, setGameResults] = useState('');
-  const [redirect, setRedirect] = useState(false);
-  const [ModalData, setModalData] = useState('');
   const [state, setState] = useState({
     showModal: false,
   });
 
   const GenerateGameList = async () => {
     let DatabaseResults = [];
-    console.log('UI input is: ', UInput);
     const SearchResults = await getList(UInput);
-    console.log('Search results returned: ', SearchResults);
 
-    SearchResults.map((game) => {
+    SearchResults.forEach((game) => {
       DatabaseResults.push(game);
-      console.log('Iteration', game.name);
     });
 
-    console.log(DatabaseResults);
     setGameResults(DatabaseResults);
   };
 
@@ -114,20 +103,10 @@ function Landing() {
     }
   };
 
-  const enterZone = async (game) => {
-    //possibly depricated in this utility
-    setState({ gameSelected: game });
-    // console.log(state);
-    // console.log('Recieved game Data', game);
-  };
-
   return (
     <AppFrame>
       Achieveland
       <CenterArea>
-        {state.gameSelected && (
-          <Modal game={state.gameSelected} closeModal={handleClose} />
-        )}
         <InputTitle>Find Boardgames</InputTitle>
         <SearchBar
           type='search'
@@ -146,15 +125,15 @@ function Landing() {
         {GameResults.length !== 0
           ? GameResults.map((game, index) => {
               return (
-                <Link to={`/game/${game.name}`}>
-                  <SearchResult key={game.id}>
+                <SearchResult key={game.name}>
+                  <Link to={`/game/${game.name}`}>
                     <ul>
                       <h2>{game.name}</h2>
 
                       <p>{game.description}</p>
                     </ul>
-                  </SearchResult>
-                </Link>
+                  </Link>
+                </SearchResult>
               );
             })
           : null}

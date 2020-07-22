@@ -1,0 +1,20 @@
+{
+  "GameName": "Spider Man",
+  "description": "Dooby Doo.",
+  "achievement": []
+}
+
+{
+  "Agricola": [
+    { "description": "4x boardgame" },
+    { "description": "refuse to play" }
+  ],
+  "Spiderman": [
+    { "description": "testing data" },
+    { "description": "to play" }
+  ],
+  "Agricola 2": [
+    { "description": "electric boogaloo" },
+    { "Achievement": "Hello" }
+  ]
+}

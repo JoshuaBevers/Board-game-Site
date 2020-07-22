@@ -7,8 +7,8 @@ const DataBase = require('../models/functions');
 /* GET home page. */
 router.get('/', async (req, res) => {
   try {
-    const response = await DataBase.getGameList(req.headers.game);
-    console.log('hello from search.js!');
+    const response = await DataBase.getGameListJson(req.headers.game);
+    console.log('hello from test.js!');
     console.log(response);
     console.log(req.headers);
 

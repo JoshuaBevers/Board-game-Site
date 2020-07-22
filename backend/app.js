@@ -5,8 +5,8 @@ const logger = require('morgan');
 const cors = require('cors');
 
 const indexRouter = require('./routes/index');
-const apiRouter = require('./routes/api');
 const search = require('./routes/search');
+const getName = require('./routes/gamename');
 
 const app = express();
 
@@ -28,8 +28,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors(corsOptions));
 
-app.use('/api', apiRouter);
 app.use('/search', search);
+app.use('/game', getName);
 app.use('/', indexRouter);
 
 module.exports = app;

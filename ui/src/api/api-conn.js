@@ -1,5 +1,5 @@
-export const getGame = async (url, gameName) => {
-  console.log('the requested url is: ', url);
+export const getGame = async (gameName) => {
+  const url = 'http://localhost:5000/game';
   try {
     const response = await fetch(url, {
       method: 'GET',
@@ -10,7 +10,6 @@ export const getGame = async (url, gameName) => {
       },
     });
     const data = await response.json();
-    console.log('the get game data is: ', data);
     return data;
   } catch (e) {
     console.log(
@@ -19,9 +18,9 @@ export const getGame = async (url, gameName) => {
     );
   }
 };
+
 export const getList = async (gameName) => {
   const url = 'http://localhost:5000/search';
-  console.log('the requested url is: ', url);
   try {
     const response = await fetch(url, {
       method: 'GET',
@@ -32,21 +31,12 @@ export const getList = async (gameName) => {
       },
     });
     const data = await response.json();
-    console.log('the getList data is: '.data);
     return data;
   } catch (e) {
     console.log(
       'Fetch failed on GetList. Try again with some different code, or a bigger sword.',
       e,
     );
-    console.log('relevent data below');
-    const regs = {
-      method: 'GET',
-      headers: gameName,
-      mode: 'cors',
-      cache: 'default',
-    };
-    console.log(regs);
   }
 };
 
