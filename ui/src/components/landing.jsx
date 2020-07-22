@@ -6,7 +6,7 @@ import { getList } from '../api/api-conn';
 const AppFrame = styled.div`
   font-family: Major Mono Display;
   min-height: 100vh;
-  background-color: grey;
+  background-color: lightgrey;
 `;
 
 const SearchBar = styled.input`
@@ -48,18 +48,21 @@ const UnderBar = styled.p`
 `;
 
 const InputTitle = styled.p`
+  font-size: 40px;
   -webkit-text-stroke: 0.7px red;
+  margin-bottom: 40px;
+  margin-top: 40px;
 `;
 
 const SearchButton = styled.button`
-  background-color: transparent;
-  border-color: transparent;
-  margin: 0;
-  padding: 0;
-  margin-top: -20px;
-  margin-left: -640px;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 20px;
+  margin-bottom: 40px;
+  margin-top: 30px;
+
   @media screen and (max-width: 600px) {
-    margin-left: -250px;
+    /* margin-left: -250px; */
   }
 `;
 
@@ -78,9 +81,6 @@ const SearchResult = styled.form`
 function Landing() {
   const [UInput, setUInput] = useState('');
   const [GameResults, setGameResults] = useState('');
-  const [state, setState] = useState({
-    showModal: false,
-  });
 
   const GenerateGameList = async () => {
     let DatabaseResults = [];
@@ -93,8 +93,8 @@ function Landing() {
     setGameResults(DatabaseResults);
   };
 
-  const handleClose = () => {
-    setState({ gameSelected: undefined });
+  const handleSearch = (e) => {
+    GenerateGameList();
   };
 
   const handleSubmit = (e) => {
@@ -118,8 +118,9 @@ function Landing() {
           }}
           onKeyPress={handleSubmit}
         />
-        <SearchButton onClick={handleSubmit}>Search</SearchButton>
+
         {GameResults === '' ? <UnderBar>Complete Achievements</UnderBar> : null}
+        <SearchButton onClick={handleSearch}>Search</SearchButton>
       </CenterArea>
       <ResultList>
         {GameResults.length !== 0

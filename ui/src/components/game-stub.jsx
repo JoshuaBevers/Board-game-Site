@@ -6,7 +6,7 @@ import { Button, Card } from 'react-bootstrap';
 const AppFrame = styled.div`
   font-family: Major Mono Display;
   min-height: 100vh;
-  background-color: grey;
+  background-color: lightgrey;
 `;
 
 const Title = styled.div`
@@ -18,13 +18,20 @@ const Title = styled.div`
 `;
 
 const AchievementList = styled.div`
-  @media screen and (max-width: 600px) {
-    text-align: center;
-    font-size: 15px;
-  }
+  display: flex;
+  text-align: center;
+  font-size: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
 `;
 
-const AchievementCard = styled.div``;
+const AchievementCard = styled.div`
+  width: 95vw;
+  margin-top: 20px;
+  border-color: orange;
+  border-radius: 10px;
+  box-shadow: 10px 10px 8px 10px #888888;
+`;
 
 function GameStub() {
   const [SelectedGame, setSelectedGame] = useState('');
@@ -75,7 +82,7 @@ function GameStub() {
           ? SelectedGame.achievements.map((achiev) => {
               return (
                 <AchievementCard key={achiev.name}>
-                  <Card style={{ width: 'auto' }}>
+                  <Card>
                     <Card.Body>
                       <Card.Title>{achiev.name}</Card.Title>
                       <Card.Text>{achiev.description}</Card.Text>
