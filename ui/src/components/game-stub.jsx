@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { getGame } from '../api/api-conn';
+import { Button, Card } from 'react-bootstrap';
 
 const AppFrame = styled.div`
   font-family: Major Mono Display;
@@ -22,6 +23,8 @@ const AchievementList = styled.div`
     font-size: 15px;
   }
 `;
+
+const AchievementCard = styled.div``;
 
 function GameStub() {
   const [SelectedGame, setSelectedGame] = useState('');
@@ -45,10 +48,6 @@ function GameStub() {
     const CleanGame = cleanGame(uncleanGame);
 
     return CleanGame;
-  };
-
-  const printObject = () => {
-    console.log(SelectedGame);
   };
 
   useEffect(() => {
@@ -75,10 +74,15 @@ function GameStub() {
         {SelectedGame !== ''
           ? SelectedGame.achievements.map((achiev) => {
               return (
-                <div key={achiev.name}>
-                  <h2>{achiev.name}</h2>
-                  <p>{achiev.description}</p>
-                </div>
+                <AchievementCard key={achiev.name}>
+                  <Card style={{ width: 'auto' }}>
+                    <Card.Body>
+                      <Card.Title>{achiev.name}</Card.Title>
+                      <Card.Text>{achiev.description}</Card.Text>
+                      <Button variant='primary'>Claim Achievement</Button>
+                    </Card.Body>
+                  </Card>
+                </AchievementCard>
               );
             })
           : null}
