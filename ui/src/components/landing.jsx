@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getList } from '../api/api-conn';
+import { Button, Card } from 'react-bootstrap';
 
 const AppFrame = styled.div`
   font-family: Major Mono Display;
@@ -57,12 +58,13 @@ const InputTitle = styled.p`
 const SearchButton = styled.button`
   background-color: white;
   border-radius: 10px;
-  font-size: 20px;
-  margin-bottom: 40px;
-  margin-top: 30px;
+  font-size: 17px;
+  margin-bottom: 30px;
+  margin-top: 10px;
 
   @media screen and (max-width: 600px) {
-    /* margin-left: -250px; */
+    padding-left: 70px;
+    padding-right: 70px;
   }
 `;
 
@@ -75,7 +77,11 @@ const ResultList = styled.div`
 `;
 
 const SearchResult = styled.form`
-  margin-top: -10px;
+  width: 95vw;
+  margin-left: 2vw;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 8px 10px #888888;
 `;
 
 function Landing() {
@@ -127,13 +133,14 @@ function Landing() {
           ? GameResults.map((game, index) => {
               return (
                 <SearchResult key={game.name}>
-                  <Link to={`/game/${game.name}`}>
-                    <ul>
-                      <h2>{game.name}</h2>
-
-                      <p>{game.description}</p>
-                    </ul>
-                  </Link>
+                  <Card>
+                    <Card.Body>
+                      <Link to={`/game/${game.name}`}>
+                        <Card.Title>{game.name}</Card.Title>
+                      </Link>
+                      <Card.Text>{game.description}</Card.Text>
+                    </Card.Body>
+                  </Card>
                 </SearchResult>
               );
             })
