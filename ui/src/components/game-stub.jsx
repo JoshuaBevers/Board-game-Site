@@ -81,7 +81,7 @@ function GameStub() {
         {SelectedGame !== ''
           ? SelectedGame.achievements.map((achiev) => {
               return (
-                <AchievementCard key={achiev.name}>
+                <AchievementCard key={achiev.id}>
                   <Card>
                     <Card.Body>
                       <Card.Title>{achiev.name}</Card.Title>
