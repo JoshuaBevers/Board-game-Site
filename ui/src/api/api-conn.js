@@ -44,7 +44,7 @@ export const getUser = async (data) => {
   const url = 'http://localhost:5000/user';
   try {
     const response = await fetch(url, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',

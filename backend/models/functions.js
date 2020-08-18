@@ -56,11 +56,13 @@ class Functions {
 
   static async getByUsername(name) {
     try {
+      console.log('Username check');
       const response = await db.one('SELECT * FROM users WHERE username = $1', [
         name,
       ]);
       return response;
     } catch (err) {
+      console.log('the error message from function.js is:');
       return err.message;
     }
   }

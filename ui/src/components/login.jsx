@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getUser } from '../api/api-conn';
 import styled from 'styled-components';
 import {
   Button,
@@ -33,10 +34,12 @@ function LoginForm() {
   const [Username, setUsername] = useState(``);
   const [UserPassword, setUserPassword] = useState(``);
 
-  const handlesubmit = () => {
+  const handlesubmit = async () => {
     console.log('Hello!');
     console.log(Username);
     console.log(UserPassword);
+    const response = await getUser(Username, UserPassword);
+    console.log(response);
   };
 
   return (

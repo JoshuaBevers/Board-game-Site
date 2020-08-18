@@ -7,6 +7,7 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const search = require('./routes/search');
 const getName = require('./routes/gamename');
+const getUser = require('./routes/user');
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(cors(corsOptions));
 
 app.use('/search', search);
 app.use('/game', getName);
+app.use('/user', getUser);
 app.use('/', indexRouter);
 
 module.exports = app;
