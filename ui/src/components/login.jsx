@@ -17,7 +17,6 @@ const LoginFrame = styled.div`
   box-shadow: 10px 10px 8px 10px #888888;
 `;
 
-const BodyFrame = styled.div``;
 const UserNameInput = styled.input`
   border-radius: 10px;
   margin-bottom: 5px;
@@ -36,7 +35,7 @@ function LoginForm() {
   };
 
   return (
-    <BodyFrame>
+    <>
       <LoginFrame>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
@@ -59,11 +58,12 @@ function LoginForm() {
             </Segment>
           </Form>
           <Message>
-            New to us? <a href='/create'>Join the crew</a>
+            New to the site?
+            <a href='/create'>Join the crew</a>
           </Message>
         </Grid.Column>
       </LoginFrame>
-    </BodyFrame>
+    </>
   );
 }
 export default LoginForm;
