@@ -6,8 +6,15 @@
       "description": "4x boardgame",
       "achievements": [
         {
-          "name": "The destroyer",
+          "id": 1,
+          "name": "The Destroyer",
           "description": "beat your opponents by 20 points",
+          "difficulty": "Hard"
+        },
+        {
+          "id": 2,
+          "name": "The Second",
+          "description": "beat your opponents by 30 points",
           "difficulty": "Hard"
         }
       ]
@@ -18,16 +25,19 @@
       "description": "4x",
       "achievements": [
         {
+          "id": 1,
           "name": "Runn that google again!",
           "description": "Links me to google",
           "difficulty": "Hard"
         },
         {
+          "id": 2,
           "name": "The second achievement!",
           "description": "This is exciting.",
           "difficulty": "Easy"
         },
         {
+          "id": 3,
           "name": "Not on my watch!",
           "description": "Defeat Thanos and don't let him get any of the infinity stones",
           "difficulty": "Medium"
@@ -40,11 +50,13 @@
       "description": "4x",
       "achievements": [
         {
+          "id": 1,
           "name": "Runn that google again!",
           "description": "Links me to google",
           "difficulty": "hard"
         },
         {
+          "id": 2,
           "name": "The second achievement!",
           "description": "This is exciting.",
           "difficulty": "hard"
@@ -57,11 +69,13 @@
       "description": "Mavel super hero game.",
       "achievements": [
         {
+          "id": 1,
           "name": "Hero of our time",
           "description": "Win while not losing any heroes to villians",
           "difficulty": "hard"
         },
         {
+          "id": 2,
           "name": "Not on my watch!",
           "description": "Defeat Thanos and don't let him get any of the infinity stones",
           "difficulty": "hard"

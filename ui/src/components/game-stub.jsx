@@ -12,7 +12,7 @@ const AppFrame = styled.div`
 const Title = styled.div`
   @media screen and (max-width: 600px) {
     text-align: center;
-    font-size: 50px;
+    font-size: 75px;
     -webkit-text-stroke: 0.7px red;
   }
 `;

@@ -124,8 +124,7 @@ function Landing() {
           }}
           onKeyPress={handleSubmit}
         />
-
-        {GameResults === '' ? <UnderBar>Complete Achievements</UnderBar> : null}
+        <UnderBar>Complete Achievements</UnderBar>
         <SearchButton onClick={handleSearch}>Search</SearchButton>
       </CenterArea>
       <ResultList>
