@@ -40,6 +40,25 @@ export const getList = async (gameName) => {
   }
 };
 
+export const getUser = async (data) => {
+  const url = 'http://localhost:5000/user';
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    return response;
+  } catch (e) {
+    console.log('failed to fetch user from ', url);
+  }
+};
+
+//test
+
 export const post = async (url, data) => {
   try {
     const response = await fetch(url, {

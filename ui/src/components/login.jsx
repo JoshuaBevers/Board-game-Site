@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   Button,
@@ -30,8 +30,13 @@ const SubmitButton = styled.button`
 `;
 
 function LoginForm() {
+  const [Username, setUsername] = useState(``);
+  const [UserPassword, setUserPassword] = useState(``);
+
   const handlesubmit = () => {
     console.log('Hello!');
+    console.log(Username);
+    console.log(UserPassword);
   };
 
   return (
@@ -43,9 +48,20 @@ function LoginForm() {
           </Header>
           <Form size='large'>
             <Segment stacked>
-              <UserNameInput placeholder='E-mail address' />
+              <UserNameInput
+                placeholder='E-mail address'
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+              />
               <Segment stacked>
-                <UserPasswordInput placeholder='Password' type='password' />
+                <UserPasswordInput
+                  placeholder='Password'
+                  type='password'
+                  onChange={(e) => {
+                    setUserPassword(e.target.value);
+                  }}
+                />
               </Segment>
               <SubmitButton
                 color='teal'

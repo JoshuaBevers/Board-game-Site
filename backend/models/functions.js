@@ -51,6 +51,19 @@ class Functions {
       return err.message;
     }
   }
+
+  //users
+
+  static async getByUsername(name) {
+    try {
+      const response = await db.one('SELECT * FROM users WHERE username = $1', [
+        name,
+      ]);
+      return response;
+    } catch (err) {
+      return err.message;
+    }
+  }
 }
 
 module.exports = Functions;
