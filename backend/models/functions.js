@@ -60,6 +60,7 @@ class Functions {
       const response = await db.one('SELECT * FROM users WHERE username = $1', [
         name,
       ]);
+      console.log('the response in function.js is:', response);
       return response;
     } catch (err) {
       console.log('the error message from function.js is:');

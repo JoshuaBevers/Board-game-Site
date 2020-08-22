@@ -35,10 +35,12 @@ function LoginForm() {
   const [UserPassword, setUserPassword] = useState(``);
 
   const handlesubmit = async () => {
-    console.log('Hello!');
+    console.log('Hello from the handlesubmit!');
     console.log(Username);
     console.log(UserPassword);
-    const response = await getUser(Username, UserPassword);
+    const data = { Username, UserPassword };
+    console.log(' Data object being sent is: ', data);
+    const response = await getUser(data);
     console.log(response);
   };
 

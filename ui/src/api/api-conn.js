@@ -42,18 +42,20 @@ export const getList = async (gameName) => {
 
 export const getUser = async (data) => {
   const url = 'http://localhost:5000/user';
+  console.log('the getUser is sending the username and password are: ', data);
   try {
     const response = await fetch(url, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
+    console.log('the response is in api-conn.js is: ', response);
     return response;
   } catch (e) {
-    console.log('failed to fetch user from ', url);
+    console.log('failed to fetch user from :', url);
   }
 };
 

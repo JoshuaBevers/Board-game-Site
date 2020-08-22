@@ -5,20 +5,19 @@ const router = express.Router();
 const DataBase = require('../models/functions');
 
 /* GET home page. */
-router.get('/', async (req, res) => {
-  const { username, password } = req.body;
-  console.log(
-    'the username and password received from the website is: ',
-    username,
-    password,
-  );
-  try {
-    const response = await DataBase.getByUsername(req.headers.body);
-    console.log('hello from test.js!');
-    console.log(response);
-    console.log(req.headers);
+router.post('/', async (req, res) => {
+  const { Username, UserPassword } = req.body;
+  console.log(Username, UserPassword);
 
-    res.json(response).status(200);
+  try {
+    const response = await DataBase.getByUsername(Username);
+    console.log('hello from user.js!');
+    console.log(
+      'the data about to be sent back to the front end is: ',
+      response,
+    );
+
+    res.json('hello').status(200);
     return response;
   } catch (e) {
     console.log('the api on backend failed to fetch in user.js.');
