@@ -1,11 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 
 const router = express.Router();
 
 const DataBase = require('../models/functions');
 
 /* POST user page. */
-router.post('/', async (req, res) => {
+router.post('/', cors(), async (req, res) => {
   const { Username, UserPassword } = req.body;
   console.log(Username, UserPassword);
 
@@ -16,7 +17,6 @@ router.post('/', async (req, res) => {
       'the data about to be sent back to the front end is: ',
       response,
     );
-
     res.json(response).status(200);
     return response;
   } catch (e) {

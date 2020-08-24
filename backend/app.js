@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const indexRouter = require('./routes/index');
@@ -10,21 +11,21 @@ const getName = require('./routes/gamename');
 const getUser = require('./routes/user');
 
 const app = express();
+app.use(cors());
+app.use(bodyParser.json());
 
 const corsOptions = {
   origin: '*',
-  methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   preflightContinue: false,
   optionsSuccessStatus: 204,
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers':
-    'Origin, X-Requested-With, Content-Type, Accept',
+  // 'Access-Control-Allow-Origin': '*',
+  // 'Access-Control-Allow-Headers':
+  //   'Origin, X-Requested-With, Content-Type, Accept',
 };
 
-app.use(cors());
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors(corsOptions));

@@ -52,8 +52,10 @@ export const getUser = async (data) => {
       },
       body: JSON.stringify(data),
     });
-    console.log('the response is in api-conn.js is: ', response);
-    return response;
+    const responseData = await response.json();
+    console.log('the json is:', Jabber);
+
+    return responseData;
   } catch (e) {
     console.log('failed to fetch user from :', url);
   }
@@ -71,6 +73,7 @@ export const post = async (url, data) => {
       },
       body: JSON.stringify(data),
     });
+    //this is missing the consuming of the fetch!
     return response;
   } catch (e) {
     console.log(e);

@@ -41,7 +41,6 @@ function LoginForm() {
     const data = { Username, UserPassword };
     console.log(' Data object being sent is: ', data);
     const response = await getUser(data);
-    console.log(response);
   };
 
   return (
