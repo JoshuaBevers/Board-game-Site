@@ -44,46 +44,44 @@ function LoginForm() {
   };
 
   return (
-    <>
-      <LoginFrame>
-        <Grid.Column style={{ maxWidth: 450 }}>
-          <Header as='h2' color='teal' textAlign='center'>
-            Log-in to your account
-          </Header>
-          <Form size='large'>
+    <LoginFrame>
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as='h2' color='teal' textAlign='center'>
+          Log-in to your account
+        </Header>
+        <Form size='large'>
+          <Segment stacked>
+            <UserNameInput
+              placeholder='E-mail address'
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
+            />
             <Segment stacked>
-              <UserNameInput
-                placeholder='E-mail address'
+              <UserPasswordInput
+                placeholder='Password'
+                type='password'
                 onChange={(e) => {
-                  setUsername(e.target.value);
+                  setUserPassword(e.target.value);
                 }}
               />
-              <Segment stacked>
-                <UserPasswordInput
-                  placeholder='Password'
-                  type='password'
-                  onChange={(e) => {
-                    setUserPassword(e.target.value);
-                  }}
-                />
-              </Segment>
-              <SubmitButton
-                color='teal'
-                fluid
-                size='large'
-                onClick={handlesubmit}
-              >
-                Login
-              </SubmitButton>
             </Segment>
-          </Form>
-          <Message>
-            New to the site?
-            <a href='/create'>Join the crew</a>
-          </Message>
-        </Grid.Column>
-      </LoginFrame>
-    </>
+            <SubmitButton
+              color='teal'
+              fluid
+              size='large'
+              onClick={handlesubmit}
+            >
+              Login
+            </SubmitButton>
+          </Segment>
+        </Form>
+        <Message>
+          New to the site?
+          <a href='/create'>Join the crew</a>
+        </Message>
+      </Grid.Column>
+    </LoginFrame>
   );
 }
 export default LoginForm;

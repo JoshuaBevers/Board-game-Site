@@ -51,7 +51,7 @@ class Functions {
       return err.message;
     }
   }
-
+ 
   //users
 
   static async getByUsername(name) {
@@ -67,6 +67,16 @@ class Functions {
       return err.message;
     }
   }
+
+  static createUser (username, password, first_name, last_name, email) {
+    try {
+      const query =
+        'INSERT INTO bars (username, password, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5) RETURNING id';
+      const Response = await DataBase.one(query, [username, password, first_name, last_name, email]);
+    } catch (e) {
+      return e.message;
+    }
+  };
 }
 
 module.exports = Functions;

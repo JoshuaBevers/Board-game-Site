@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getList } from '../api/api-conn';
-import { Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 const AppFrame = styled.div`
   font-family: Major Mono Display;
