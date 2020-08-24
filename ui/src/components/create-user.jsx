@@ -30,6 +30,7 @@ function CreateUser() {
   const [Username, setUsername] = useState('');
   const [Password, setPassword] = useState('');
   const [Email, setEmail] = useState('');
+  const [redirect, setRedirect] = useState(false);
   // const [FirstName, setFirstName] = useState('');
   // const [LastName, setLastName] = useState('');
 
@@ -39,6 +40,7 @@ function CreateUser() {
     console.log(Password);
     const SendingData = { Username, Password, Email };
     const response = await submitUser(SendingData);
+    setRedirect(true);
   };
 
   return (

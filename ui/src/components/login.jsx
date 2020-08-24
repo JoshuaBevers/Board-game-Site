@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { getUser } from '../api/api-conn';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import {
   Button,
@@ -33,6 +34,7 @@ const SubmitButton = styled.button`
 function LoginForm() {
   const [Username, setUsername] = useState(``);
   const [UserPassword, setUserPassword] = useState(``);
+  const [redirect, setRedirect] = useState(false);
 
   const handlesubmit = async () => {
     console.log('Hello from the handlesubmit!');
@@ -41,10 +43,23 @@ function LoginForm() {
     const data = { Username, UserPassword };
     console.log(' Data object being sent is: ', data);
     const response = await getUser(data);
+
+    //create local data
+    const setLocalData = (localKey, localValue) => {
+      const currentDate = new Date();
+      const item = {
+        localValue,
+        expiry: currentDate.getTime() + 86400000,
+      };
+      localStorage.setItem(localKey, JSON.stringify(item));
+    };
+    setLocalData('userName', Username);
+    setRedirect(true);
   };
 
   return (
     <LoginFrame>
+      {redirect && <Redirect to='./' />}
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='teal' textAlign='center'>
           Log-in to your account
