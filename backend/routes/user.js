@@ -4,7 +4,7 @@ const router = express.Router();
 
 const DataBase = require('../models/functions');
 
-/* GET home page. */
+/* POST user page. */
 router.post('/', async (req, res) => {
   const { Username, UserPassword } = req.body;
   console.log(Username, UserPassword);
@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
       response,
     );
 
-    res.json('hello').status(200);
+    res.json(response).status(200);
     return response;
   } catch (e) {
     console.log('the api on backend failed to fetch in user.js.');
