@@ -1,13 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Message,
-  Segment,
-} from 'semantic-ui-react';
+import { Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 
 const CreateFrame = styled.div`
   display: flex;
@@ -37,7 +30,7 @@ function CreateUser() {
   const [Password, setPassword] = useState('');
   // const [FirstName, setFirstName] = useState('');
   // const [LastName, setLastName] = useState('');
-  // const [Email, setEmail] = useState('');
+  const [Email, setEmail] = useState('');
 
   const handlesubmit = async () => {
     console.log('Hello from the handlesubmit!');
@@ -85,14 +78,7 @@ function CreateUser() {
                   }}
                 />
               </Segment>
-              <Segment stacked>
-                <UserPasswordInput
-                  placeholder='Email'
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                />
-              </Segment>
+             
 
               <SubmitButton
                 color='teal'
@@ -102,6 +88,14 @@ function CreateUser() {
               >
                 Submit
               </SubmitButton> */}
+            </Segment>
+            <Segment stacked>
+              <UserPasswordInput
+                placeholder='Email'
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
             </Segment>
             <Message>
               Already part of the crew?
