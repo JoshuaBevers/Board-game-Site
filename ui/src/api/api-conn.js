@@ -41,7 +41,7 @@ export const getList = async (gameName) => {
 };
 
 export const getUser = async (data) => {
-  const url = 'http://localhost:5000/user';
+  const url = 'http://localhost:5000/login';
   console.log('the getUser is sending the username and password are: ', data);
   try {
     const response = await fetch(url, {

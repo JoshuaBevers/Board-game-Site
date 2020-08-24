@@ -8,7 +8,8 @@ const cors = require('cors');
 const indexRouter = require('./routes/index');
 const search = require('./routes/search');
 const getName = require('./routes/gamename');
-const getUser = require('./routes/user');
+const Login = require('./routes/user');
+const CreateUser = require('./routes/create-user');
 
 const app = express();
 app.use(cors());
@@ -19,9 +20,6 @@ const corsOptions = {
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   preflightContinue: false,
   optionsSuccessStatus: 204,
-  // 'Access-Control-Allow-Origin': '*',
-  // 'Access-Control-Allow-Headers':
-  //   'Origin, X-Requested-With, Content-Type, Accept',
 };
 
 app.use(logger('dev'));
@@ -32,7 +30,8 @@ app.use(cors(corsOptions));
 
 app.use('/search', search);
 app.use('/game', getName);
-app.use('/user', getUser);
+app.use('/user', Login);
+app.use('/create', CreateUser);
 app.use('/', indexRouter);
 
 module.exports = app;
