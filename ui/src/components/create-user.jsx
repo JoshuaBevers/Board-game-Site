@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { submitUser } from '../api/api-conn';
+import { Redirect } from 'react-router-dom';
 
 const CreateFrame = styled.div`
   display: flex;
@@ -35,17 +36,16 @@ function CreateUser() {
   // const [LastName, setLastName] = useState('');
 
   const handlesubmit = async () => {
-    console.log('Hello from the handlesubmit!');
-    console.log(Username);
-    console.log(Password);
     const SendingData = { Username, Password, Email };
     const response = await submitUser(SendingData);
+    //should add a check here to make sure creation is sucessfull. Right now it just redirects no matter what. There is also a huge delay that needs to be investigated.
     setRedirect(true);
   };
 
   return (
     <>
       <CreateFrame>
+        {redirect && <Redirect to='./' />}
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
             Part of the ship, part of the crew...
