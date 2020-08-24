@@ -53,8 +53,7 @@ export const getUser = async (data) => {
       body: JSON.stringify(data),
     });
     const responseData = await response.json();
-    console.log('the json is:', Jabber);
-
+    console.log('the recieved data from the backend is: ', responseData);
     return responseData;
   } catch (e) {
     console.log('failed to fetch user from :', url);
