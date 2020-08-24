@@ -41,7 +41,7 @@ export const getList = async (gameName) => {
 };
 
 export const getUser = async (data) => {
-  const url = 'http://localhost:5000/login';
+  const url = 'http://localhost:5000/user/login';
   console.log('the getUser is sending the username and password are: ', data);
   try {
     const response = await fetch(url, {
@@ -60,6 +60,28 @@ export const getUser = async (data) => {
   }
 };
 
+export const submitUser = async (data) => {
+  const url = 'http://localhost:5000/user/create';
+  console.log(
+    'the submitUser is sending the username and password are: ',
+    data,
+  );
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    const responseData = await response.json();
+    console.log('the recieved data from the backend is: ', responseData);
+    return responseData;
+  } catch (e) {
+    console.log('failed to fetch user from :', url);
+  }
+};
 //test
 
 export const post = async (url, data) => {

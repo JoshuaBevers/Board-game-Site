@@ -5,7 +5,7 @@ const router = express.Router();
 const DataBase = require('../models/functions');
 
 /* POST user page. */
-router.post('/', async (req, res) => {
+router.post('/login', async (req, res) => {
   const { Username, UserPassword } = req.body;
   console.log(Username, UserPassword);
 
@@ -45,6 +45,44 @@ router.post('/', async (req, res) => {
     console.log('the api on backend failed to fetch in user.js.');
     return e;
   }
+});
+
+router.post('/create', async (req, res) => {
+  const { Username, Password, Email } = req.body;
+  try {
+    console.log(Username, Password, Email);
+
+    //check to see if username is already in use.
+    const nameCheck = await DataBase.checkIfNameIsInUse(Username);
+
+    if (nameCheck === true || Password.length <= 4) {
+      if (nameCheck === true) {
+        res
+          .json({
+            error: 'Sorry. That name is taken!',
+          })
+          .status(200);
+      }
+      if (Password.length <= 4) {
+        console.log('password reject.');
+        res
+          .json({
+            error:
+              'Sorry! The password needs to be at least 5 characters long.',
+          })
+          .status(200);
+      }
+    } else {
+      //insert into the database.
+      console.log('firing insert.');
+      const insert = await DataBase.createUser(Username, Password, Email);
+      console.log(insert);
+    }
+  } catch (e) {
+    console.log('Big failure', e);
+  }
+
+  return null;
 });
 
 module.exports = router;

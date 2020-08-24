@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
+import { submitUser } from '../api/api-conn';
 
 const CreateFrame = styled.div`
   display: flex;
@@ -28,14 +29,16 @@ const SubmitButton = styled.button`
 function CreateUser() {
   const [Username, setUsername] = useState('');
   const [Password, setPassword] = useState('');
+  const [Email, setEmail] = useState('');
   // const [FirstName, setFirstName] = useState('');
   // const [LastName, setLastName] = useState('');
-  const [Email, setEmail] = useState('');
 
   const handlesubmit = async () => {
     console.log('Hello from the handlesubmit!');
     console.log(Username);
     console.log(Password);
+    const SendingData = { Username, Password, Email };
+    const response = await submitUser(SendingData);
   };
 
   return (
@@ -78,16 +81,7 @@ function CreateUser() {
                   }}
                 />
               </Segment>
-             
-
-              <SubmitButton
-                color='teal'
-                fluid
-                size='large'
-                onClick={handlesubmit}
-              >
-                Submit
-              </SubmitButton> */}
+             */}
             </Segment>
             <Segment stacked>
               <UserPasswordInput
@@ -97,6 +91,14 @@ function CreateUser() {
                 }}
               />
             </Segment>
+            <SubmitButton
+              color='teal'
+              fluid
+              size='large'
+              onClick={handlesubmit}
+            >
+              Join the Crew
+            </SubmitButton>
             <Message>
               Already part of the crew?
               <a href='/login'> Ship up</a>

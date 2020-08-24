@@ -51,32 +51,48 @@ class Functions {
       return err.message;
     }
   }
- 
+
   //users
 
   static async getByUsername(name) {
     try {
-      console.log('Username check');
       const response = await db.one('SELECT * FROM users WHERE username = $1', [
         name,
       ]);
       console.log('the response in function.js is:', response);
       return response;
     } catch (err) {
-      console.log('the error message from function.js is:');
+      console.log(
+        'the error message from getbyusername in function.js is: ',
+        err,
+      );
       return err.message;
     }
   }
 
-  static createUser (username, password, first_name, last_name, email) {
+  static async createUser(username, password, email) {
     try {
       const query =
-        'INSERT INTO bars (username, password, first_name, last_name, email) VALUES ($1, $2, $3, $4, $5) RETURNING id';
-      const Response = await DataBase.one(query, [username, password, first_name, last_name, email]);
+        'INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING id';
+      const Response = await db.one(query, [username, password, email]);
+      console.log(Response);
+      return Response;
     } catch (e) {
       return e.message;
     }
-  };
+  }
+
+  static async checkIfNameIsInUse(name) {
+    try {
+      const prospectiveName = await this.getByUsername(name);
+      if (name === prospectiveName.username) {
+        return true;
+      }
+      return false;
+    } catch (e) {
+      return e;
+    }
+  }
 }
 
 module.exports = Functions;
