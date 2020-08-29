@@ -35,6 +35,7 @@ const AchievementCard = styled.div`
 
 function GameStub() {
   const [SelectedGame, setSelectedGame] = useState('');
+  const [SelectedAchievement, setSelectedAchievement] = useState('');
 
   const cleanGame = (game) => {
     let GameTitle = game;
@@ -68,6 +69,33 @@ function GameStub() {
     fetchGame(gameIS);
   }, []);
 
+  const claimAchievement = () => {
+    //arange data
+    console.log(SelectedGame);
+    console.log(SelectedAchievement);
+    const user = {
+      username: getLocalData('username'),
+      userID: getLocalData('userID'),
+    };
+    console.log('user is: ', user);
+
+    //claim the achievement
+  };
+
+  const getLocalData = (localKey) => {
+    const itemStr = localStorage.getItem(localKey);
+    if (!itemStr) {
+      return '';
+    }
+    const item = JSON.parse(itemStr);
+    const currentDate = new Date();
+    if (currentDate.getTime() > item.expiry) {
+      localStorage.removeItem(localKey);
+      return '';
+    }
+    return item.localValue;
+  };
+
   return (
     <AppFrame>
       <Title>
@@ -86,7 +114,15 @@ function GameStub() {
                     <Card.Body>
                       <Card.Title>{achiev.name}</Card.Title>
                       <Card.Text>{achiev.description}</Card.Text>
-                      <Button variant='primary'>Claim Achievement</Button>
+                      <Button
+                        variant='primary'
+                        onClick={() => {
+                          setSelectedAchievement(achiev);
+                          claimAchievement();
+                        }}
+                      >
+                        Claim Achievement
+                      </Button>
                     </Card.Body>
                   </Card>
                 </AchievementCard>

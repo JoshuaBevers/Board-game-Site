@@ -21,8 +21,8 @@ router.post('/login', async (req, res) => {
     const workData = response;
     if (UserPassword === workData.password) {
       console.log('The password checks out, boss.');
-      const { username, first_name, last_name } = workData;
-      const SendingData = { username, first_name, last_name };
+      const { username, first_name, last_name, id } = workData;
+      const SendingData = { username, first_name, last_name, id };
       res.json(SendingData).status(200);
     } else {
       if (response === 'No data returned from the query.') {

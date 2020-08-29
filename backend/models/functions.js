@@ -93,6 +93,18 @@ class Functions {
       return e;
     }
   }
+
+  static async claimAchievement(achievement, user) {
+    try {
+      const query = `INSERT INTO achievements (game_no, achievement_no, userID) VALUES($1, $2, $3) RETURNING id`;
+      //grab user id.
+      //need to break out the user to grab the achievement id and game id. to send in the Response.
+      const Response = await db.one(query, []);
+      return Response;
+    } catch (e) {
+      return e;
+    }
+  }
 }
 
 module.exports = Functions;

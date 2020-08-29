@@ -82,6 +82,9 @@ export const submitUser = async (data) => {
     console.log('failed to fetch user from :', url);
   }
 };
+
+export const submitAchievement = async (game, achievement, user) => {};
+
 //test
 
 export const post = async (url, data) => {

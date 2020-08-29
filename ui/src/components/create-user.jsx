@@ -17,6 +17,7 @@ const UserNameInput = styled.input`
   margin-bottom: 5px;
   width: 70vw;
 `;
+
 const UserPasswordInput = styled.input`
   border-radius: 10px;
   width: 70vw;
@@ -53,7 +54,7 @@ function CreateUser() {
           <Form size='large'>
             <Segment stacked>
               <UserNameInput
-                placeholder='Username... could be batman'
+                placeholder='Username... You could be Batman'
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}

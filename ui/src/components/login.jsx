@@ -43,7 +43,7 @@ function LoginForm() {
     const data = { Username, UserPassword };
     console.log(' Data object being sent is: ', data);
     const response = await getUser(data);
-
+    console.log('response data is: ', response);
     //create local data
     const setLocalData = (localKey, localValue) => {
       const currentDate = new Date();
@@ -53,7 +53,8 @@ function LoginForm() {
       };
       localStorage.setItem(localKey, JSON.stringify(item));
     };
-    setLocalData('userName', Username);
+    setLocalData('username', Username);
+    setLocalData('userID', response.id);
     setRedirect(true);
   };
 
