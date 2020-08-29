@@ -83,7 +83,10 @@ export const submitUser = async (data) => {
   }
 };
 
-export const submitAchievement = async (game, achievement, user) => {};
+export const submitAchievement = async (game, achievement, user) => {
+  console.log('reporting from submitAchievement: ', achievement, user);
+  console.log('achievement ', achievement);
+};
 
 //test
 

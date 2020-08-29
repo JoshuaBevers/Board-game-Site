@@ -35,7 +35,6 @@ const AchievementCard = styled.div`
 
 function GameStub() {
   const [SelectedGame, setSelectedGame] = useState('');
-  const [SelectedAchievement, setSelectedAchievement] = useState('');
 
   const cleanGame = (game) => {
     let GameTitle = game;
@@ -69,10 +68,9 @@ function GameStub() {
     fetchGame(gameIS);
   }, []);
 
-  const claimAchievement = async () => {
+  const claimAchievement = async (achievement) => {
     //arange data
     console.log(SelectedGame);
-    console.log(SelectedAchievement);
     const user = {
       username: getLocalData('username'),
       userID: getLocalData('userID'),
@@ -81,7 +79,7 @@ function GameStub() {
 
     //claim the achievement
     //future improvement: write it to where the button changes until the submitAchievement reports back a sucessful post. Prevents hanging the site.
-    submitAchievement(SelectedGame, SelectedAchievement, user);
+    submitAchievement(SelectedGame, achievement, user);
   };
 
   const getLocalData = (localKey) => {
@@ -119,8 +117,7 @@ function GameStub() {
                       <Button
                         variant='primary'
                         onClick={() => {
-                          setSelectedAchievement(achiev);
-                          claimAchievement();
+                          claimAchievement(achiev);
                         }}
                       >
                         Claim Achievement
