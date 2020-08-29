@@ -9,7 +9,6 @@ const indexRouter = require('./routes/index');
 const search = require('./routes/search');
 const getName = require('./routes/gamename');
 const User = require('./routes/user');
-const makeUser = require('./routes/create-user');
 
 const app = express();
 app.use(cors());
@@ -31,7 +30,7 @@ app.use(cors(corsOptions));
 app.use('/search', search);
 app.use('/game', getName);
 app.use('/user', User);
-// app.use('/create', makeUser);
+
 app.use('/', indexRouter);
 
 module.exports = app;

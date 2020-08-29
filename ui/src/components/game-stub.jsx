@@ -79,7 +79,7 @@ function GameStub() {
 
     //claim the achievement
     //future improvement: write it to where the button changes until the submitAchievement reports back a sucessful post. Prevents hanging the site.
-    submitAchievement(SelectedGame, achievement, user);
+    await submitAchievement(SelectedGame, achievement, user);
   };
 
   const getLocalData = (localKey) => {

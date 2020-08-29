@@ -86,6 +86,24 @@ export const submitUser = async (data) => {
 export const submitAchievement = async (game, achievement, user) => {
   console.log('reporting from submitAchievement: ', achievement, user);
   console.log('achievement ', achievement);
+  const url = `http://localhost:5000/user/achievement`;
+  const packet = { Game: game, Achievement: achievement, User: user };
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(packet),
+    });
+    const responseData = await response.json();
+    console.log('the received data from the backend is: ', responseData);
+    return responseData;
+  } catch (e) {
+    console.log('catch block');
+    return e;
+  }
 };
 
 //test

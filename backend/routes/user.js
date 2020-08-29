@@ -85,4 +85,22 @@ router.post('/create', async (req, res) => {
   return null;
 });
 
+router.post('/achievement', async (req, res) => {
+  console.log('hello from database.');
+  const { Game, Achievement, User } = req.body;
+  console.log('user id: ', User.userID);
+  try {
+    const insert = await DataBase.claimAchievement(
+      Game.id,
+      Achievement,
+      User.userID,
+    );
+    console.log(insert);
+    return insert;
+  } catch (e) {
+    return e;
+  }
+  res.json('hello!');
+});
+
 module.exports = router;

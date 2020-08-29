@@ -94,12 +94,11 @@ class Functions {
     }
   }
 
-  static async claimAchievement(achievement, user) {
+  static async claimAchievement(gameID, achievementID, user) {
     try {
-      const query = `INSERT INTO achievements (game_no, achievement_no, userID) VALUES($1, $2, $3) RETURNING id`;
-      //grab user id.
+      const query = `INSERT INTO achievements (game_no, achievement_no, user_id) VALUES($1, $2, $3) RETURNING id`;
       //need to break out the user to grab the achievement id and game id. to send in the Response.
-      const Response = await db.one(query, []);
+      const Response = await db.one(query, [gameID, achievementID.id, user]);
       return Response;
     } catch (e) {
       return e;
