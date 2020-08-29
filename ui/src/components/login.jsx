@@ -68,7 +68,7 @@ function LoginForm() {
         <Form size='large'>
           <Segment stacked>
             <UserNameInput
-              placeholder='E-mail address'
+              placeholder='Username'
               onChange={(e) => {
                 setUsername(e.target.value);
               }}

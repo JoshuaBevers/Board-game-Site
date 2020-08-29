@@ -43,9 +43,6 @@ class Functions {
       });
       console.log('The game from the JSON grab is: ', game);
 
-      // const response = await db.one('SELECT * FROM games WHERE name = $1', [
-      //   name,
-      // ]);
       return returnableGame;
     } catch (err) {
       return err.message;
@@ -99,6 +96,16 @@ class Functions {
       const query = `INSERT INTO achievements (game_no, achievement_no, user_id) VALUES($1, $2, $3) RETURNING id`;
       //need to break out the user to grab the achievement id and game id. to send in the Response.
       const Response = await db.one(query, [gameID, achievementID.id, user]);
+      return Response;
+    } catch (e) {
+      return e;
+    }
+  }
+
+  static async fetchAllAchievementsByUser(userID) {
+    try {
+      const query = 'SELECT * FROM achievements where user_id = $1';
+      const Response = await db.any(query, [userID]);
       return Response;
     } catch (e) {
       return e;

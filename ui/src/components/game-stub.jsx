@@ -115,7 +115,9 @@ function GameStub() {
                       <Card.Title>{achiev.name}</Card.Title>
                       <Card.Text>{achiev.description}</Card.Text>
                       <Button
-                        variant='primary'
+                        // variant='primary'
+                        className='ui toggle button'
+                        aria-pressed='false'
                         onClick={() => {
                           claimAchievement(achiev);
                         }}

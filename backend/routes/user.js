@@ -18,11 +18,22 @@ router.post('/login', async (req, res) => {
     //test password.
     //mutate data to remove password to send back to the front end.
 
+    //grab all the achievements for claimed button.
+
     const workData = response;
     if (UserPassword === workData.password) {
       console.log('The password checks out, boss.');
       const { username, first_name, last_name, id } = workData;
-      const SendingData = { username, first_name, last_name, id };
+      //grab all the achievements from the user and send it forward.
+      const userAchievements = await DataBase.fetchAllAchievementsByUser(id);
+      console.log('the user achievements are: ', userAchievements);
+      const SendingData = {
+        username,
+        first_name,
+        last_name,
+        id,
+        userAchievements,
+      };
       res.json(SendingData).status(200);
     } else {
       if (response === 'No data returned from the query.') {
