@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { getGame } from '../api/api-conn';
+import { getGame, submitAchievement } from '../api/api-conn';
 import { Button, Card } from 'react-bootstrap';
 
 const AppFrame = styled.div`
@@ -69,7 +69,7 @@ function GameStub() {
     fetchGame(gameIS);
   }, []);
 
-  const claimAchievement = () => {
+  const claimAchievement = async () => {
     //arange data
     console.log(SelectedGame);
     console.log(SelectedAchievement);
@@ -80,6 +80,8 @@ function GameStub() {
     console.log('user is: ', user);
 
     //claim the achievement
+    //future improvement: write it to where the button changes until the submitAchievement reports back a sucessful post. Prevents hanging the site.
+    submitAchievement(SelectedGame, SelectedAchievement, user);
   };
 
   const getLocalData = (localKey) => {
