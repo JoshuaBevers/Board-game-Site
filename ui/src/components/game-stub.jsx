@@ -82,17 +82,19 @@ function GameStub() {
 
       //parse workable data.
       let test = [];
-      UserAchievements.forEach((game) => {
-        console.log('we are peeking at User Achivement Game: ', game);
-        if (game.game_no === currentGame.id) {
-          console.log('we have a match.');
-          test.push(game);
-          console.log('the match is: ', game);
-          return game;
-        }
-      });
-      console.log('finished prodouct', test);
-      setCurrentGameAchievement(test);
+      if (UserAchievements !== undefined) {
+        UserAchievements.forEach((game) => {
+          console.log('we are peeking at User Achivement Game: ', game);
+          if (game.game_no === currentGame.id) {
+            console.log('we have a match.');
+            test.push(game);
+            console.log('the match is: ', game);
+            return game;
+          }
+        });
+        console.log('finished prodouct', test);
+        setCurrentGameAchievement(test);
+      }
     }
 
     const gameIS = decodeURL();
@@ -138,29 +140,65 @@ function GameStub() {
 
   const RenderTest = (props) => {
     //get current achivements claimed in this game by the user.
-    let display = CurrentGameAchievement.map((achieve) => {
-      console.log('primary achieve at the base is: ', achieve);
-      if (achieve.achievement_no !== props.achievement.id) {
-        console.log('hello!', props.achievement.id);
-        return (
-          <Button
-            // variant='primary'
-            className='ui toggle button'
-            aria-pressed='false'
-            onClick={() => {
-              claimAchievement(props.achievement);
-            }}
-          >
-            Claim Achievement
-          </Button>
-        );
-      } else {
-        return <h2>placeholder for unachieve button</h2>;
-      }
-    });
-    console.log(CurrentGameAchievement);
+    console.log('dfosdif', CurrentGameAchievement.length);
+    console.log(
+      CurrentGameAchievement.length,
+      SelectedGame.achievements.length,
+    );
+    if (CurrentGameAchievement.length === SelectedGame.achievements.length) {
+      console.log('You have done it all!');
+      return (
+        <h1>
+          YOu've completed them all! please install an remove achievement
+          button.
+        </h1>
+      );
+    }
+    if (CurrentGameAchievement.length === 0) {
+      let display = SelectedGame.achievements.map((achieve) => {
+        if (achieve.id !== props.achievement.id) {
+          console.log('hello!', props.achievement.id, achieve.achievement_no);
+          return (
+            <Button
+              className='ui toggle button'
+              aria-pressed='false'
+              onClick={() => {
+                claimAchievement(props.achievement);
+              }}
+            >
+              Claim Achievement
+            </Button>
+          );
+        }
+      });
+      return display;
+    }
+    if (CurrentGameAchievement.length >= 1) {
+      let display = CurrentGameAchievement.map((achieve) => {
+        console.log('primary achieve at the base is: ', achieve);
 
-    return display;
+        if (achieve.achievement_no !== props.achievement.id) {
+          console.log('hello!', props.achievement.id);
+          return (
+            <Button
+              // variant='primary'
+              className='ui toggle button'
+              aria-pressed='false'
+              onClick={() => {
+                claimAchievement(props.achievement);
+              }}
+            >
+              Claim Achievement
+            </Button>
+          );
+        } else {
+          return <h1> already claimed</h1>;
+        }
+      });
+
+      console.log(CurrentGameAchievement);
+      return display;
+    }
   };
 
   return (
@@ -182,7 +220,7 @@ function GameStub() {
                       <Card.Title>{achiev.name}</Card.Title>
                       <Card.Text>{achiev.description}</Card.Text>
                       {/* conditional rendering? */}
-                      {CurrentGameAchievement !== '' ? (
+                      {CurrentGameAchievement !== [] ? (
                         <RenderTest achievement={achiev} />
                       ) : null}
                       {/* end conditional  rendering */}
