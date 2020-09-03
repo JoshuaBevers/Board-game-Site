@@ -36,7 +36,7 @@ const AchievementCard = styled.div`
 function GameStub() {
   const [SelectedGame, setSelectedGame] = useState('');
   const [UserAchievements, setUserAchievements] = useState('');
-  const [CurrentGameAchievement, setCurrentGameAchievement] = useState('');
+  const [CurrentGameAchievement, setCurrentGameAchievement] = useState([]);
 
   const cleanGame = (game) => {
     let GameTitle = game;
@@ -139,6 +139,16 @@ function GameStub() {
   };
 
   const RenderTest = (props) => {
+    // const playerHasAchievement = CurrentGameAchievement.find((x) => {
+    //   return x.id === props.achievement.id;
+    // });
+    for (const a of CurrentGameAchievement) {
+      if (a.id === props.achievement.id) {
+        //return button
+      }
+    }
+    //return other button.
+
     //get current achivements claimed in this game by the user.
     console.log('dfosdif', CurrentGameAchievement.length);
     console.log(
@@ -149,7 +159,7 @@ function GameStub() {
       console.log('You have done it all!');
       return (
         <h1>
-          YOu've completed them all! please install an remove achievement
+          You've completed them all! please install an remove achievement
           button.
         </h1>
       );

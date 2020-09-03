@@ -16,6 +16,12 @@
           "name": "The Second",
           "description": "beat your opponents by 30 points",
           "difficulty": "Hard"
+        },
+        {
+          "id": 3,
+          "name": "The third",
+          "description": "beat your opponents by 80 points",
+          "difficulty": "Hard"
         }
       ]
     },
