@@ -36,7 +36,7 @@ const AchievementCard = styled.div`
 function GameStub() {
   const [SelectedGame, setSelectedGame] = useState('');
   const [UserAchievements, setUserAchievements] = useState('');
-  const [CurrentGameAchievement, setCurrentGameachievement] = useState('');
+  const [CurrentGameAchievement, setCurrentGameAchievement] = useState('');
 
   const cleanGame = (game) => {
     let GameTitle = game;
@@ -60,28 +60,45 @@ function GameStub() {
   };
 
   useEffect(() => {
+    setUserAchievements(getLocalData('achievements'));
+
     async function fetchGame(gameName) {
       const game = await getGame(gameName);
       setSelectedGame(game[0]);
+      console.log(
+        'About to send: ',
+        game,
+        ' to verify current games out of achievements.',
+      );
+      const setGame = await CurrentUserGameAchievements(game[0]);
       return game;
+    }
+
+    async function CurrentUserGameAchievements(currentGame) {
+      //setting workable data.
+      console.log('receieved game is: ', currentGame);
+      const UserAchievements = getLocalData('achievements');
+      console.log('user achievements are: ', UserAchievements);
+
+      //parse workable data.
+      let test = [];
+      UserAchievements.forEach((game) => {
+        console.log('we are peeking at User Achivement Game: ', game);
+        if (game.game_no === currentGame.id) {
+          console.log('we have a match.');
+          test.push(game);
+          console.log('the match is: ', game);
+          return game;
+        }
+      });
+      console.log('finished prodouct', test);
+      setCurrentGameAchievement(test);
     }
 
     const gameIS = decodeURL();
     fetchGame(gameIS);
-    setUserAchievements(getLocalData('achievements'));
 
     //game setting
-    const tAchieve = getLocalData('achievements');
-    console.log(SelectedGame);
-    const cGame = tAchieve.forEach((game) => {
-      console.log('hello');
-      if (game.id === SelectedGame.id) {
-        console.log(game);
-        console.log(SelectedGame);
-        return game;
-      }
-    });
-    console.log(cGame);
   }, []);
 
   const claimAchievement = async (achievement) => {
@@ -115,6 +132,35 @@ function GameStub() {
   const seeLocalData = () => {
     console.log(UserAchievements);
     console.log(getLocalData('achievements'));
+
+    console.log('game achievements are: ', CurrentGameAchievement);
+  };
+
+  const RenderTest = (props) => {
+    //get current achivements claimed in this game by the user.
+    let display = CurrentGameAchievement.map((achieve) => {
+      console.log('primary achieve at the base is: ', achieve);
+      if (achieve.achievement_no !== props.achievement.id) {
+        console.log('hello!', props.achievement.id);
+        return (
+          <Button
+            // variant='primary'
+            className='ui toggle button'
+            aria-pressed='false'
+            onClick={() => {
+              claimAchievement(props.achievement);
+            }}
+          >
+            Claim Achievement
+          </Button>
+        );
+      } else {
+        return <h2>placeholder for unachieve button</h2>;
+      }
+    });
+    console.log(CurrentGameAchievement);
+
+    return display;
   };
 
   return (
@@ -135,16 +181,12 @@ function GameStub() {
                     <Card.Body>
                       <Card.Title>{achiev.name}</Card.Title>
                       <Card.Text>{achiev.description}</Card.Text>
-                      <Button
-                        // variant='primary'
-                        className='ui toggle button'
-                        aria-pressed='false'
-                        onClick={() => {
-                          claimAchievement(achiev);
-                        }}
-                      >
-                        Claim Achievement
-                      </Button>
+                      {/* conditional rendering? */}
+                      {CurrentGameAchievement !== '' ? (
+                        <RenderTest achievement={achiev} />
+                      ) : null}
+                      {/* end conditional  rendering */}
+
                       <Button onClick={seeLocalData}> check local data</Button>
                     </Card.Body>
                   </Card>
