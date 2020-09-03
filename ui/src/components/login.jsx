@@ -55,6 +55,7 @@ function LoginForm() {
     };
     setLocalData('username', Username);
     setLocalData('userID', response.id);
+    setLocalData('achievements', response.userAchievements);
     setRedirect(true);
   };
 

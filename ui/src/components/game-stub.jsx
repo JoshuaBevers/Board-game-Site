@@ -35,6 +35,8 @@ const AchievementCard = styled.div`
 
 function GameStub() {
   const [SelectedGame, setSelectedGame] = useState('');
+  const [UserAchievements, setUserAchievements] = useState('');
+  const [CurrentGameAchievement, setCurrentGameachievement] = useState('');
 
   const cleanGame = (game) => {
     let GameTitle = game;
@@ -66,6 +68,20 @@ function GameStub() {
 
     const gameIS = decodeURL();
     fetchGame(gameIS);
+    setUserAchievements(getLocalData('achievements'));
+
+    //game setting
+    const tAchieve = getLocalData('achievements');
+    console.log(SelectedGame);
+    const cGame = tAchieve.forEach((game) => {
+      console.log('hello');
+      if (game.id === SelectedGame.id) {
+        console.log(game);
+        console.log(SelectedGame);
+        return game;
+      }
+    });
+    console.log(cGame);
   }, []);
 
   const claimAchievement = async (achievement) => {
@@ -96,6 +112,11 @@ function GameStub() {
     return item.localValue;
   };
 
+  const seeLocalData = () => {
+    console.log(UserAchievements);
+    console.log(getLocalData('achievements'));
+  };
+
   return (
     <AppFrame>
       <Title>
@@ -124,6 +145,7 @@ function GameStub() {
                       >
                         Claim Achievement
                       </Button>
+                      <Button onClick={seeLocalData}> check local data</Button>
                     </Card.Body>
                   </Card>
                 </AchievementCard>
