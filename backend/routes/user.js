@@ -13,13 +13,6 @@ router.post('/login', async (req, res) => {
     const response = await DataBase.getByUsername(Username);
     console.log('hello from user.js!');
 
-    //whole data is currently here.
-    //things that need to happen.
-    //test password.
-    //mutate data to remove password to send back to the front end.
-
-    //grab all the achievements for claimed button.
-
     const workData = response;
     if (UserPassword === workData.password) {
       console.log('The password checks out, boss.');

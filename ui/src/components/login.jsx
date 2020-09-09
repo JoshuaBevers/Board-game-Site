@@ -38,13 +38,14 @@ function LoginForm() {
 
   const handlesubmit = async () => {
     console.log('Hello from the handlesubmit!');
-    console.log(Username);
-    console.log(UserPassword);
+
     const data = { Username, UserPassword };
     console.log(' Data object being sent is: ', data);
     const response = await getUser(data);
     console.log('response data is: ', response);
+
     //create local data
+
     const setLocalData = (localKey, localValue) => {
       const currentDate = new Date();
       const item = {
@@ -53,6 +54,7 @@ function LoginForm() {
       };
       localStorage.setItem(localKey, JSON.stringify(item));
     };
+
     setLocalData('username', Username);
     setLocalData('userID', response.id);
     setLocalData('achievements', response.userAchievements);
@@ -83,6 +85,7 @@ function LoginForm() {
                 }}
               />
             </Segment>
+
             <SubmitButton
               color='teal'
               fluid

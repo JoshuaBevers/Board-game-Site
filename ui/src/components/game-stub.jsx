@@ -70,7 +70,7 @@ function GameStub() {
         game,
         ' to verify current games out of achievements.',
       );
-      const setGame = await CurrentUserGameAchievements(game[0]);
+      await CurrentUserGameAchievements(game[0]);
       return game;
     }
 
@@ -82,7 +82,7 @@ function GameStub() {
 
       //parse workable data.
       let test = [];
-      if (UserAchievements !== undefined) {
+      if (UserAchievements !== undefined || null) {
         UserAchievements.forEach((game) => {
           if (game.game_no === currentGame.id) {
             test.push(game);
@@ -143,7 +143,7 @@ function GameStub() {
     });
     console.log('player has, ', playerHasAchievement);
     let display = null;
-    if (playerHasAchievement !== undefined) {
+    if (playerHasAchievement === undefined) {
       display = (
         <Button
           className='ui toggle button'
@@ -156,7 +156,7 @@ function GameStub() {
         </Button>
       );
     } else {
-      display = <h1>already has achievement.</h1>;
+      display = <h2>already achieved.</h2>;
     }
 
     return display;

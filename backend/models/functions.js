@@ -1,5 +1,6 @@
 const db = require('./conn.js');
 const gamebase = require('../data/boardgames.json');
+var crypto = require('crypto');
 
 class Functions {
   static async getGameListJson(game) {
@@ -68,10 +69,50 @@ class Functions {
   }
 
   static async createUser(username, password, email) {
+    //salt and has the password.
+    //salt function
+    var genRandomString = function (length) {
+      return crypto
+        .randomBytes(Math.ceil(length / 2))
+        .toString('hex') /** convert to hexadecimal format */
+        .slice(0, length); /** return required number of characters */
+    };
+
+    //salt the password.
+    var sha512 = function (password, salt) {
+      var hash = crypto.createHmac(
+        'sha512',
+        salt,
+      ); /** Hashing algorithm sha512 */
+      hash.update(password);
+      var value = hash.digest('hex');
+      return {
+        salt: salt,
+        passwordHash: value,
+      };
+    };
+
+    //hash the password.
+    function saltHashPassword(userpassword) {
+      var salt = genRandomString(16); /** Gives us salt of length 16 */
+      var passwordData = sha512(userpassword, salt);
+      console.log('UserPassword = ' + userpassword);
+      console.log('Passwordhash = ' + passwordData.passwordHash);
+      console.log('nSalt = ' + passwordData.salt);
+      return passwordData;
+    }
+
+    const cryptoPass = saltHashPassword(password);
+    console.log(cryptoPass);
+
     try {
       const query =
         'INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING id';
-      const Response = await db.one(query, [username, password, email]);
+      const Response = await db.one(query, [
+        username,
+        cryptoPass.passwordHash,
+        email,
+      ]);
       console.log(Response);
       return Response;
     } catch (e) {

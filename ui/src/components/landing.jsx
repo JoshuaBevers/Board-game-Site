@@ -111,7 +111,6 @@ function Landing() {
 
   return (
     <AppFrame>
-      Achieveland
       <CenterArea>
         <InputTitle>Find Boardgames</InputTitle>
         <SearchBar
