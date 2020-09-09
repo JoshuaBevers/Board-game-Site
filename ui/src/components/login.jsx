@@ -10,6 +10,7 @@ import {
   Message,
   Segment,
 } from 'semantic-ui-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const LoginFrame = styled.div`
   display: flex;
@@ -61,6 +62,16 @@ function LoginForm() {
     setRedirect(true);
   };
 
+  const LoginButton = () => {
+    const { loginWithRedirect } = useAuth0();
+
+    return (
+      <button onClick={() => loginWithRedirect('http://localhost:3000')}>
+        Log In
+      </button>
+    );
+  };
+
   return (
     <LoginFrame>
       {redirect && <Redirect to='./' />}
@@ -100,7 +111,8 @@ function LoginForm() {
           New to the site?
           <a href='/create'>Join the crew</a>
         </Message>
-      </Grid.Column>
+      </Grid.Column>{' '}
+      <LoginButton>button</LoginButton>
     </LoginFrame>
   );
 }
