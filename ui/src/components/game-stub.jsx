@@ -143,7 +143,7 @@ function GameStub() {
     });
     console.log('player has, ', playerHasAchievement);
     let display = null;
-    if (playerHasAchievement === undefined) {
+    if (playerHasAchievement === undefined || null) {
       display = (
         <Button
           className='ui toggle button'
