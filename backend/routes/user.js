@@ -1,4 +1,24 @@
 const express = require('express');
+const jwt = require('express-jwt');
+const jwtAuthz = require('express-jwt-authz');
+const jwksRsa = require('jwks-rsa');
+
+const checkJwt = jwt({
+  // Dynamically provide a signing key
+  // based on the kid in the header and
+  // the signing keys provided by the JWKS endpoint.
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://dev-zrtci-fg.us.auth0.com/.well-known/jwks.json`,
+  }),
+
+  // Validate the audience and the issuer.
+  audience: 'https://dev-zrtci-fg.us.auth0.com/api/v2/',
+  issuer: `https://dev-zrtci-fg.us.auth0.com/`,
+  algorithms: ['RS256'],
+});
 
 const router = express.Router();
 
@@ -89,7 +109,7 @@ router.post('/create', async (req, res) => {
   return null;
 });
 
-router.post('/achievement', async (req, res) => {
+router.post('/achievement', checkJwt, async (req, res) => {
   console.log('hello from database.');
   const { Game, Achievement, User } = req.body;
   console.log('user id: ', User.userID);
@@ -104,7 +124,6 @@ router.post('/achievement', async (req, res) => {
   } catch (e) {
     return e;
   }
-  res.json('hello!');
 });
 
 module.exports = router;

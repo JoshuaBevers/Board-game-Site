@@ -30,7 +30,6 @@ const Profile = () => {
         console.log(e.message);
       }
     };
-
     getUserMetadata();
   }, []);
 

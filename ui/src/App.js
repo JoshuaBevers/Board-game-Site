@@ -6,6 +6,7 @@ import Landing from './components/landing';
 import User from './components/profile';
 import Login from './components/login';
 import CreateUser from './components/create-user';
+import Profile from './components/profile';
 
 const NavBar = styled.div`
   display: flex;
@@ -87,6 +88,7 @@ function App() {
         <Route path='/user/:id' component={User} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/create' component={CreateUser} />
+        <Route exact path='/profile' component={Profile} />
       </Router>
     </>
   );
