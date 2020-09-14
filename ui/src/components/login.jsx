@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import { getUser } from '../api/api-conn';
 import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-import {
-  Button,
-  Form,
-  Grid,
-  Header,
-  Message,
-  Segment,
-} from 'semantic-ui-react';
+import { Form, Grid, Header, Message, Segment } from 'semantic-ui-react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const LoginFrame = styled.div`
