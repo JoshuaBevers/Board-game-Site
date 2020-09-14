@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { getList } from '../api/api-conn';
+import { Card } from 'react-bootstrap';
 
 const AppFrame = styled.div`
   font-family: Major Mono Display;
   min-height: 100vh;
-  background-color: grey;
+  background-color: lightgrey;
 `;
 
 const SearchBar = styled.input`
@@ -48,18 +49,22 @@ const UnderBar = styled.p`
 `;
 
 const InputTitle = styled.p`
+  font-size: 40px;
   -webkit-text-stroke: 0.7px red;
+  margin-bottom: 40px;
+  margin-top: 40px;
 `;
 
 const SearchButton = styled.button`
-  background-color: transparent;
-  border-color: transparent;
-  margin: 0;
-  padding: 0;
-  margin-top: -20px;
-  margin-left: -640px;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 17px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+
   @media screen and (max-width: 600px) {
-    margin-left: -250px;
+    padding-left: 70px;
+    padding-right: 70px;
   }
 `;
 
@@ -72,15 +77,16 @@ const ResultList = styled.div`
 `;
 
 const SearchResult = styled.form`
-  margin-top: -10px;
+  width: 95vw;
+  margin-left: 2vw;
+  margin-top: 20px;
+  border-radius: 10px;
+  box-shadow: 10px 10px 8px 10px #888888;
 `;
 
 function Landing() {
   const [UInput, setUInput] = useState('');
   const [GameResults, setGameResults] = useState('');
-  const [state, setState] = useState({
-    showModal: false,
-  });
 
   const GenerateGameList = async () => {
     let DatabaseResults = [];
@@ -93,8 +99,8 @@ function Landing() {
     setGameResults(DatabaseResults);
   };
 
-  const handleClose = () => {
-    setState({ gameSelected: undefined });
+  const handleSearch = (e) => {
+    GenerateGameList();
   };
 
   const handleSubmit = (e) => {
@@ -105,7 +111,6 @@ function Landing() {
 
   return (
     <AppFrame>
-      Achieveland
       <CenterArea>
         <InputTitle>Find Boardgames</InputTitle>
         <SearchBar
@@ -118,21 +123,22 @@ function Landing() {
           }}
           onKeyPress={handleSubmit}
         />
-        <SearchButton onClick={handleSubmit}>Search</SearchButton>
-        {GameResults === '' ? <UnderBar>Complete Achievements</UnderBar> : null}
+        <UnderBar>Complete Achievements</UnderBar>
+        <SearchButton onClick={handleSearch}>Search</SearchButton>
       </CenterArea>
       <ResultList>
         {GameResults.length !== 0
           ? GameResults.map((game, index) => {
               return (
                 <SearchResult key={game.name}>
-                  <Link to={`/game/${game.name}`}>
-                    <ul>
-                      <h2>{game.name}</h2>
-
-                      <p>{game.description}</p>
-                    </ul>
-                  </Link>
+                  <Card>
+                    <Card.Body>
+                      <Link to={`/game/${game.name}`}>
+                        <Card.Title>{game.name}</Card.Title>
+                      </Link>
+                      <Card.Text>{game.description}</Card.Text>
+                    </Card.Body>
+                  </Card>
                 </SearchResult>
               );
             })
