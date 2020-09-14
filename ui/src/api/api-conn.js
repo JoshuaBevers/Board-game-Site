@@ -1,3 +1,5 @@
+import { useAuth0 } from '@auth0/auth0-react';
+
 export const getGame = async (gameName) => {
   const url = 'http://localhost:5000/game';
   try {
@@ -86,14 +88,19 @@ export const submitUser = async (data) => {
 export const submitAchievement = async (game, achievement, user) => {
   console.log('reporting from submitAchievement: ', achievement, user);
   console.log('achievement ', achievement);
+
   const url = `http://localhost:5000/user/achievement`;
   const packet = { Game: game, Achievement: achievement, User: user };
+  const { getAccessTokenSilently } = useAuth0();
+
   try {
+    const token = await getAccessTokenSilently();
     const response = await fetch(url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(packet),
     });

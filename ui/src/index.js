@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'semantic-ui-css/semantic.min.css';
 import * as serviceWorker from './serviceWorker';
 import { Auth0Provider } from '@auth0/auth0-react';
+
 ReactDOM.render(
   <Auth0Provider
     domain='dev-zrtci-fg.us.auth0.com'
